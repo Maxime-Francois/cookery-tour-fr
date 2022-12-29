@@ -20,8 +20,17 @@ class Recipe
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $cooking_time = null;
+    #[ORM\Column]
+    private ?int $cooking_time = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
+    
+
+   
+
+
 
     public function getId(): ?int
     {
@@ -52,15 +61,29 @@ class Recipe
         return $this;
     }
 
-    public function getCookingTime(): ?\DateTimeInterface
+    public function getCookingTime(): ?int
     {
         return $this->cooking_time;
     }
 
-    public function setCookingTime(\DateTimeInterface $cooking_time): self
+    public function setCookingTime(int $cooking_time): self
     {
         $this->cooking_time = $cooking_time;
 
         return $this;
     }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+  
 }

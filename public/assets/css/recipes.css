@@ -1,0 +1,102 @@
+
+
+.recipe-container{
+display:flex;
+justify-content: center;
+width:80%;
+margin: auto;
+flex-wrap: wrap;
+gap: 30px;
+}
+.recipe-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    border-radius: 10px;
+    border: 1px solid black;
+    overflow: hidden;
+    position: relative;
+    background: var(--card-blue);
+}
+.recipe-card img {
+    width: 100%;
+   
+}
+.recipe-card h3 {
+    color: white;
+    text-align: center;
+    position: absolute;
+    background: var(--card-blue);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 16px;
+    top: 10px;
+    font-family: 'Rubik';
+}
+.bottom-card{
+   
+    width: 100%;
+    padding: 20px 0px;
+}
+.bloc-info-recipe{
+display: flex;
+flex-direction: column;
+align-items: center;
+
+
+}
+.infos-container{
+    display: flex;
+    justify-content: space-around;
+    max-width: 90%;
+    margin: auto;
+}
+
+.bloc-info-recipe i{
+    color: white;
+    font-size: 27px;
+
+}
+.bloc-info-recipe span{
+   
+    color: white;
+    font-size: 20px;
+    font-family: "Rubik";
+}
+.links-container{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    align-items: center;
+    position: relative;
+}
+.links-container a{
+    font-size: 16px;
+    font-family: "Rubik";
+    color: #1F1F1F;
+    background: white;
+    padding: 5px 12px;
+    border-radius: 15px;
+    transition: all 0.5s;
+
+
+}
+.links-container a:hover {
+    background: orange;
+    color: white;
+}
+.like-button i {
+    font-size: 20px;
+    color: rgb(164, 11, 11);
+
+}
+.like-button{
+    background: white;
+    padding: 9px;
+    border-radius: 30px;
+    display: flex;
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+}

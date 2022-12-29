@@ -1,39 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recipe index{% endblock %}
+{% block title %}Recipe index
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/recipes.css')}}">
+{% endblock %}
 
 {% block body %}
-    <h1>Recipe index</h1>
+	<div class="bloc-title">
+		<h1>TOUTES LES RECETTES</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Cooking_time</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for recipe in recipes %}
-            <tr>
-                <td>{{ recipe.id }}</td>
-                <td>{{ recipe.name }}</td>
-                <td>{{ recipe.description }}</td>
-                <td>{{ recipe.cookingTime ? recipe.cookingTime|date('H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">show</a>
-                    <a href="{{ path('app_recipe_edit', {'id': recipe.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_recipe_new') }}">Create new</a>
+	</div>
+
+	<div class="recipe-container">
+		{% for recipe in recipes %}
+			<article class="recipe-card">
+				<img src="{{recipe.image}}">
+				<h3>{{ recipe.name }}</h3>
+				<div class="bottom-card">
+					<div class="infos-container">
+						<div class="bloc-info-recipe">
+							<i class="fa-solid fa-location-dot"></i>
+							<span>paris</span>
+						</div>
+                        <div class="bloc-info-recipe">
+							<i class="fa-solid fa-utensils"></i>
+							<span>plat</span>
+						</div>
+                        <div class="bloc-info-recipe">
+							<i class="fa-solid fa-clock"></i>
+							<span>{{ recipe.cookingTime }} min</span>
+						</div>
+					</div>
+
+			
+					<div class="links-container">
+                    <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">Voir la recette</a>
+                    <div class="like-button">
+                    <i class="fa-regular fa-heart"></i>
+                    </div>
+                    </div>
+						
+						{# <a href="{{ path('app_recipe_edit', {'id': recipe.id}) }}">edit</a> #}
+					</td>
+				</div>
+			</td>
+		</article>
+	{% else %}
+
+		<td colspan="5">no records found</td>
+{# <a href="{{ path('app_recipe_new') }}">Create new</a> #}
+	{% endfor %}
+
+</div>
 {% endblock %}
