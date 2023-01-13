@@ -26,6 +26,14 @@ class Recipe
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
+    #[ORM\ManyToOne(inversedBy: 'recipe')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Region $region = null;
+
+    #[ORM\ManyToOne(inversedBy: 'recipe')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
     
 
    
@@ -81,6 +89,30 @@ class Recipe
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getRegion(): ?Region
+    {
+        return $this->region;
+    }
+
+    public function setRegion(?Region $region): self
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
