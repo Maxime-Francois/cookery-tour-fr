@@ -13,17 +13,17 @@ class CategoryFixtures extends Fixture
         
 
 
-        for ($i = 1; $i <= 3; $i++){
+        // for ($i = 1; $i <= 3; $i++){
           
-            $category = new Category();
-            $category ->setName ("nom de la categorie n°$i");
+        //     $category = new Category();
+        //     $category ->setName ("nom de la categorie n°$i");
                     
 
-                     $manager->persist($category);
-        }
-        // $product = new Product();
-        // $manager->persist($product);
+        //              $manager->persist($category);
+        // }
+        // // $product = new Product();
+        // // $manager->persist($product);
 
-        $manager->flush();
+        // $manager->flush();
     }
 }

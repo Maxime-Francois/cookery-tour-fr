@@ -26,6 +26,7 @@ class Region
         $this->recipe = new ArrayCollection();
     }
 
+
     public function getId(): ?int
     {
         return $this->id;

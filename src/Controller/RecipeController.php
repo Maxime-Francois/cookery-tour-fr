@@ -20,6 +20,7 @@ class RecipeController extends AbstractController
             'recipes' => $recipeRepository->findAll(),
         ]);
     }
+   
 
     #[Route('/new', name: 'app_recipe_new', methods: ['GET', 'POST'])]
     public function new(Request $request, RecipeRepository $recipeRepository): Response
@@ -75,4 +76,5 @@ class RecipeController extends AbstractController
 
         return $this->redirectToRoute('app_recipe_index', [], Response::HTTP_SEE_OTHER);
     }
+    
 }

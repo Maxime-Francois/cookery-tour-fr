@@ -13,16 +13,16 @@ class RegionFixtures extends Fixture
         
 
 
-        for ($i = 1; $i <= 12; $i++){
+        // for ($i = 1; $i <= 12; $i++){
          
-            $region = new Region();
-            $region ->setName ("nom de la région n°$i");
+        //     $region = new Region();
+        //     $region ->setName ("nom de la région n°$i");
     
-                     $manager->persist($region);
-        }
-        // $product = new Product();
-        // $manager->persist($product);
+        //              $manager->persist($region);
+        // }
+        // // $product = new Product();
+        // // $manager->persist($product);
 
-        $manager->flush();
+        // $manager->flush();
     }
 }
