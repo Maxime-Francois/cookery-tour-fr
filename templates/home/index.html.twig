@@ -11,28 +11,39 @@
 {% block javascripts %}{% endblock %}
 
 {% block body %}
-<div class="main-container">
+	<div class="main-container">
 
-	<div class="bloc-title">
-		<h1>COOKERY TOUR</h1>
-		<h2>
-			Recettes de cuisine des régions de france 
-		</h2>
- 
+		<div class="bloc-title">
+			<h1>COOKERY TOUR</h1>
+			<h2>
+				Recettes de cuisine des régions de france
+			</h2>
+
+
+		</div>
+
+
+		<div class="select-container">
+
+			<div class="dropRegion">
+				<input id="toggle" type="checkbox" checked>
+				<h2>Sélectionnez une région</h2>
+				<ul>
+					{% for region in regions %}
+						<li>
+							<a href="{{path('app_region_show', {'id': region.id})}}">
+								{{region.name}}
+							</a>
+						</li>
+					{% endfor %}
+
+				</ul>
+			</div>
+
+
+
+
+		</div>
 	</div>
-
-
-<div class="select-container">
-
-    <form method="GET" action="page.html">
-    <label>Séléctionnez une région de france</label>
-  <select id="custom-select">
-  <option value="valeur1">Île-de-France</option>
-  <option value="valeur2">Centre-Val de Loire</option>
-  <option value="valeur3">Bourgogne et Franche-Comté</option>
-</select>
-</form>
-</div>
-</div>
 
 {% endblock %}

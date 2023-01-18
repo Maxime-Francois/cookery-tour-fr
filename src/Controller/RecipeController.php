@@ -19,8 +19,11 @@ class RecipeController extends AbstractController
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipeRepository->findAll(),
         ]);
+
+
+        
     }
-   
+
 
     #[Route('/new', name: 'app_recipe_new', methods: ['GET', 'POST'])]
     public function new(Request $request, RecipeRepository $recipeRepository): Response
@@ -32,7 +35,7 @@ class RecipeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $recipeRepository->save($recipe, true);
 
-            return $this->redirectToRoute('app_recipe_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_recipe_show', ['id' => $recipe->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('recipe/new.html.twig', [
@@ -70,11 +73,10 @@ class RecipeController extends AbstractController
     #[Route('/{id}', name: 'app_recipe_delete', methods: ['POST'])]
     public function delete(Request $request, Recipe $recipe, RecipeRepository $recipeRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$recipe->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $recipe->getId(), $request->request->get('_token'))) {
             $recipeRepository->remove($recipe, true);
         }
 
         return $this->redirectToRoute('app_recipe_index', [], Response::HTTP_SEE_OTHER);
     }
-    
 }

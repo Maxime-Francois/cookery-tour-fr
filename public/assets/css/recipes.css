@@ -1,12 +1,12 @@
 
 
 .recipe-container{
-display:flex;
-justify-content: center;
-width:80%;
-margin: auto;
-flex-wrap: wrap;
-gap: 30px;
+    display: flex;
+        justify-content: center;
+        width: 90%;
+        margin: auto;
+        flex-wrap: wrap;
+        gap: 40px;
 }
 .recipe-card{
     display: flex;
@@ -14,7 +14,7 @@ gap: 30px;
     align-items: center;
     width: 30%;
     border-radius: 10px;
-    border: 1px solid black;
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
     overflow: hidden;
     position: relative;
     background: var(--card-blue);
@@ -33,6 +33,7 @@ gap: 30px;
     font-size: 16px;
     top: 10px;
     font-family: 'Rubik';
+        width: 90%;
 }
 .bottom-card{
    
@@ -40,17 +41,19 @@ gap: 30px;
     padding: 20px 0px;
 }
 .bloc-info-recipe{
-display: flex;
-flex-direction: column;
-align-items: center;
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 30%;
 
 
 }
 .infos-container{
     display: flex;
-    justify-content: space-around;
-    max-width: 90%;
-    margin: auto;
+        justify-content: center;
+        max-width: 90%;
+        margin: auto;
+        gap: 20px;
 }
 
 .bloc-info-recipe i{
@@ -63,6 +66,7 @@ align-items: center;
     color: white;
     font-size: 20px;
     font-family: "Rubik";
+        text-align: center;
 }
 .links-container{
     display: flex;
