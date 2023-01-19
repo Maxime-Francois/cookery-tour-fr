@@ -39,20 +39,20 @@ class RecipeRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Recipe[] Returns an array of Recipe objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('r.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return Recipe[] Returns an array of Recipe objects
+    */
+   public function findAllByRegion($regionName): array
+   {
+       return $this->createQueryBuilder('p')
+            ->innerJoin('p.region', 't')
+            ->where('t.name = :regionName')
+            ->setParameter('regionName', $regionName)
+            ->orderBy('t.name', 'DESC')
+            ->getQuery()
+            ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?Recipe
 //    {

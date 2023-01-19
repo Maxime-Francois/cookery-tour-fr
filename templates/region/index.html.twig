@@ -1,14 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Region{% endblock %}
+{% block title %}Region
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/recipes.css')}}">
+{% endblock %}
+
 
 {% block body %}
 
-<div class="bloc-title">
-	<h1>{{region.name}}</h1>
-</div>
+	<div class="bloc-title">
+		<h1>{{region.name}}</h1>
+	</div>
+
+<div class="recipe-container">
+	{% for recipe in recipes %}
+		<article class="recipe-card">
+			<img src="{{recipe.image}}">
+			<h3>{{ recipe.name }}</h3>
+			<div class="bottom-card">
+				<div class="infos-container">
+					<div class="bloc-info-recipe">
+						<i class="fa-solid fa-location-dot"></i>
+						<span>{{recipe.region.name}}</span>
+
+					</div>
+					<div class="bloc-info-recipe">
+						<i class="fa-solid fa-utensils"></i>
+						<span>{{recipe.category.name}}</span>
+					</div>
+					<div class="bloc-info-recipe">
+						<i class="fa-solid fa-clock"></i>
+						<span>{{ recipe.cookingTime }}
+							min</span>
+					</div>
+				</div>
 
 
+				<div class="links-container">
+					<a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">Voir la recette</a>
+					<div class="like-button">
+						<i class="fa-regular fa-heart"></i>
+					</div>
+				</div>
 
 
-{% endblock %}
+			</div>
+
+		</article>
+	{% else %}
+
+		<td colspan="5">no records found</td>
+		{# <a href="{{ path('app_recipe_new') }}">Create new</a> #}
+	{% endfor %}
+
+</div>{% endblock %}
+
