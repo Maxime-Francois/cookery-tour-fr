@@ -31,7 +31,8 @@
 					</button>
 
 					<div class="dropdown" id="dropdown">
-						<a href="#create">
+						<a href="{{path('app_favorite', {username: app.user.username})}}">
+
 							Mes recettes favorites
 						</a>
 						<a href="{{path('app_logout')}}">

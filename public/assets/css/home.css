@@ -60,11 +60,11 @@
     margin: auto;
     margin-top: 40px;
     position: relative;
-    width: clamp(320px, 50vw, 100%);
+    width: 400px;
 }
 
 .dropRegion h2 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
    color: white !important;
         border-radius: 2px;
         position: relative;
