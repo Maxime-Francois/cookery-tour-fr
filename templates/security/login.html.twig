@@ -2,10 +2,17 @@
 
 {% block title %}Log in{% endblock %}
 
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/form.css')}}">
+{% endblock %}
+
+
 {% block body %}
 <div class="bloc-title">
 <h1>CONNEXION</h1>
 </div>
+
+<div class="form-container">
 
 <form method="post">
     {% if error %}
@@ -18,11 +25,15 @@
         </div>
     {% endif %}
 
-    
+    <div class="bloc-input">
     <label for="inputEmail">Email</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    </div>
+    <div class="bloc-input"> 
     <label for="inputPassword">Mot de passe</label>
     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+    </div>
+   
 
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
@@ -43,4 +54,6 @@
         Connexion
     </button>
 </form>
+</div>
+
 {% endblock %}

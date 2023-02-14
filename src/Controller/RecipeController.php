@@ -2,13 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Favorite;
 use App\Entity\Recipe;
 use App\Form\RecipeType;
-use App\Repository\FavoriteRepository;
 use App\Repository\RecipeRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 // use Doctrine\Persistence\ObjectManager;
-use Doctrine\ORM\EntityManagerInterface as ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,6 +26,7 @@ class RecipeController extends AbstractController
             $userFavorites = $user->getFavorites();
         } else {
             $userFavorites = null;
+           
         }
 
 
@@ -38,6 +38,7 @@ class RecipeController extends AbstractController
 
 
     #[Route('/new', name: 'app_recipe_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function new(Request $request, RecipeRepository $recipeRepository): Response
     {
         $recipe = new Recipe();
@@ -45,7 +46,11 @@ class RecipeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser();
+             $recipe->setUserId($user->getId());
+
             $recipeRepository->save($recipe, true);
+           
 
             return $this->redirectToRoute('app_recipe_show', ['id' => $recipe->getId()], Response::HTTP_SEE_OTHER);
         }
@@ -64,9 +69,20 @@ class RecipeController extends AbstractController
         ]);
     }
 
+    #[Security("is_granted('ROLE_USER') and user.getId() === recipe.getUserId()")]
     #[Route('/{id}/edit', name: 'app_recipe_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Recipe $recipe, RecipeRepository $recipeRepository): Response
     {
+        $user = $this->getUser();
+        $userId = $user->getId();
+        $recipeUserId = $recipe->getUserId();
+     
+        //si l'id du user ne correspond pas a la l'id du userid de la recette
+        if($userId !== $recipeUserId){ 
+        //alors ont redirige l'utilisateur vers la recette
+            return $this->redirectToRoute('app_recipe_show', ['id' => $recipe->getId()], Response::HTTP_SEE_OTHER);
+        }
+       
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
@@ -82,6 +98,8 @@ class RecipeController extends AbstractController
         ]);
     }
 
+
+    #[Security("is_granted('ROLE_USER') and user.getId() === recipe.getUserId()")]
     #[Route('/{id}', name: 'app_recipe_delete', methods: ['POST'])]
     public function delete(Request $request, Recipe $recipe, RecipeRepository $recipeRepository): Response
     {
@@ -92,89 +110,4 @@ class RecipeController extends AbstractController
         return $this->redirectToRoute('app_recipe_index', [], Response::HTTP_SEE_OTHER);
     }
 
-
-
-
-    #[Route('/{id}/favorite', name: 'app_recipe_favorite')]
-
-    public function like(Recipe $recipe, ObjectManager $manager): Response
-    {
-        // $user = $this->getUser();
-        // if (!$user) return $this->json([
-        //     'code' => 403,
-        //     'message' => "Unauthorized"
-        // ], 403);
-        // if ($recipe->isLikedByUser($user)) {
-        //     $like = $favRepo->findOneBy([
-        //         'post' => $recipe,
-        //         'user' => $user
-        //     ]);
-        //     $manager->remove($like);
-        //     $manager->flush();
-
-        //     $findFavByRecipe = $favRepo->findBy(['post' => $recipe]);
-        //     $countFavByRecipe = count($findFavByRecipe);
-
-        //     return $this->json([
-        //         'code' => 200,
-        //         'message' => 'like bien supprimé',
-        //         'likes' => $countFavByRecipe
-        //     ], 200);
-        // }
-
-        // $like = new Favorite();
-        // $like->setPost($recipe)
-        //     ->setUser($user);
-
-        // $manager->persist($like);
-        // $manager->flush();
-
-        // $findFavByRecipe = $favRepo->findBy(['post' => $recipe]);
-        // $countFavByRecipe = count($findFavByRecipe);
-
-        // recuperer le user connecté
-        $user = $this->getUser();
-        $userFavorites = $user->getFavorites();
-
-        if (!$user) {
-
-            return $this->json([
-                'code' => 403,
-                'message' => "Unauthorized"
-            ], 403);
-        } else {
-
-            if ($userFavorites->contains($recipe)) {
-                $recipe->removeUserFavorite($user);
-                $likes = count($recipe->getUserFavorites());
-
-                $recipe->setLikes2(($likes));
-
-                $manager->persist($recipe);
-                $manager->flush();
-
-
-                return $this->json([
-                    'code' => 200,
-                    'message' => 'like bien supprimé',
-                    'likes' => $likes
-                ], 200);
-            } else {
-                $recipe->addUserFavorite($user);
-                $likes = count($recipe->getUserFavorites());
-                $recipe->setLikes2($likes);
-                $manager->persist($recipe);
-                $manager->flush();
-
-
-                return $this->json([
-                    'code' => 200,
-                    'message' => 'like bien ajouté',
-                    // 'likes' => $countFavByRecipe
-                    'likes' => $likes
-
-                ], 200);
-            }
-        }
-    }
-}
+ }

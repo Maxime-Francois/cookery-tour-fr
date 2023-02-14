@@ -36,26 +36,19 @@ class Recipe
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Favorite::class)]
-    private Collection $likes;
-
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favorites')]
     private Collection $user_favorites;
 
     #[ORM\Column(nullable: true)]
     private ?int $likes2 = null;
 
+    #[ORM\Column]
+    private ?int $user_id = null;
+
     public function __construct()
     {
-        $this->likes = new ArrayCollection();
         $this->user_favorites = new ArrayCollection();
     }
-
-
-
-
-
-
 
     public function getId(): ?int
     {
@@ -135,49 +128,6 @@ class Recipe
     }
 
     /**
-     * @return Collection<int, Favorite>
-     */
-    public function getLikes(): Collection
-    {
-        return $this->likes;
-    }
-
-    public function addLike(Favorite $like): self
-    {
-        if (!$this->likes->contains($like)) {
-            $this->likes[] = ($like);
-            $like->setPost($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLike(Favorite $like): self
-    {
-        if ($this->likes->contains($like)) {
-            $this->likes->removeElement($like);
-
-            // set the owning side to null (unless already changed)
-            if ($like->getPost() === $this) {
-                $like->setPost(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function isLikedByUser(User $user): bool
-    {
-        foreach ($this->likes as $like) {
-            if ($like->getUser() === $user) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
      * @return Collection<int, User>
      */
     public function getUserFavorites(): Collection
@@ -212,6 +162,18 @@ class Recipe
     public function setLikes2(?int $likes2): self
     {
         $this->likes2 = $likes2;
+
+        return $this;
+    }
+
+    public function getUserId(): ?int
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(int $user_id): self
+    {
+        $this->user_id = $user_id;
 
         return $this;
     }

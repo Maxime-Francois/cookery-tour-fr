@@ -40,13 +40,9 @@
 
 					<div class="links-container">
 						<a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">Voir la recette</a>
-						<span>{{recipe.likes2 }}</span>
 						<a class="like-button" href="{{path('app_recipe_favorite',{'id': recipe.id}) }}">
-							{% if app.user and (recipe in userFavorites) %}
-								<i class="fa-solid fa-heart"></i>
-							{% else %}
-								<i class="fa-regular fa-heart"></i>
-							{% endif %}
+							<span>{{recipe.likes2 }}</span>
+							<i class="fa-solid fa-heart"></i>
 						</a>
 					</div>
 

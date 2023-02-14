@@ -36,16 +36,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Favorite::class)]
-    private Collection $likes;
-
     #[ORM\ManyToMany(targetEntity: Recipe::class, inversedBy: 'user_favorites')]
     private Collection $favorites;
 
+   
+
     public function __construct()
     {
-        $this->likes = new ArrayCollection();
         $this->favorites = new ArrayCollection();
+      
     }
 
     public function getId(): ?int
@@ -142,35 +141,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Favorite>
-     */
-    public function getLikes(): Collection
-    {
-        return $this->likes;
-    }
-
-    public function addLike(Favorite $like): self
-    {
-        if (!$this->likes->contains($like)) {
-            $this->likes->add($like);
-            $like->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLike(Favorite $like): self
-    {
-        if ($this->likes->removeElement($like)) {
-            // set the owning side to null (unless already changed)
-            if ($like->getUser() === $this) {
-                $like->setUser(null);
-            }
-        }
-
-        return $this;
-    }
+ 
 
     /**
      * @return Collection<int, Recipe>
@@ -195,4 +166,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+   
 }

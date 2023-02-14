@@ -13,8 +13,17 @@ class RegionController extends AbstractController
     #[Route('region/{id}', name: 'app_region_show', methods: ['GET'])]
     public function show(Region $region, RecipeRepository $recipeRepository): Response
     {
+        $user = $this->getUser();
+
+        if ($user) {
+            $userFavorites = $user->getFavorites();
+        } else {
+            $userFavorites = null;
+        }
+
         return $this->render('region/index.html.twig', [
             'region' => $region,
+            'userFavorites' => $userFavorites,
             'recipes' => $recipeRepository->findAllByRegion($region->getName())
         ]);
     }

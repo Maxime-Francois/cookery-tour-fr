@@ -32,19 +32,5 @@ class SecurityController extends AbstractController
     }
 
 
-    #[Route(path: '/favorite/{username}', name: 'app_favorite')]
-    public function favorite(?User $user):Response
 
-    {
-        if(!$user){
-            return $this-> redirectToRoute('app_login');
-        }
-
-        
-
-        return $this->render('security/favorite.html.twig', [
-            'user' => $user
-
-        ]);
-    }
 }

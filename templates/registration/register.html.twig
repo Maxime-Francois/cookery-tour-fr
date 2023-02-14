@@ -2,6 +2,11 @@
 
 {% block title %}inscription{% endblock %}
 
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/form.css')}}">
+{% endblock %}
+
+
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
@@ -13,15 +18,21 @@
 </div>
 
    
+<div class="form-container">
 
-    {{ form_start(registrationForm) }}
-      {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+{{ form_start(registrationForm)}}
+
+{{ form_row(registrationForm.username, { label: 'Nom ou Pseudo' ,'attr': {'placeholder': 'Entrer un nom ou Pseudo'}}) }}
+
+
+{{ form_row(registrationForm.email, { label: 'Email' ,'attr': {'placeholder': 'Entrer un email valide'}}) }}
+
+
+{{ form_row(registrationForm.plainPassword, { label: 'Mot de passe','attr': {'placeholder': 'Entrer un mot de passe'}}) }}
+
+       
 
         <button type="submit" class="btn">s'inscrire</button>
     {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}

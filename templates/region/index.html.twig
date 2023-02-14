@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Region
+{% block title %}Recipe index
 {% endblock %}
+
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('assets/css/recipes.css')}}">
 {% endblock %}
 
-
 {% block body %}
-
 	<div class="bloc-title">
-		<h1>{{region.name}}</h1>
+		<h1>TOUTES LES RECETTES</h1>
+
+
 	</div>
 
 	<div class="recipe-container">
@@ -39,31 +40,29 @@
 
 					<div class="links-container">
 						<a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">Voir la recette</a>
+						<a class="like-button" href="{{path('app_recipe_favorite',{'id': recipe.id}) }}">
+							<span class="js-likes">{{recipe.likes2 }}</span>
 
-						{% if app.user and recipe.isLikedByUser(app.user) %}
-
-							<div class="like-button">
-								<i class="<i class="fa-solid fa-heart"></i>"></i>
-
-							</div>
-						{% else %}
-
-							<div class="like-button">
+							{% if app.user and (recipe in userFavorites) %}
+								<i class="fa-solid fa-heart"></i>
+							{% else %}
 								<i class="fa-regular fa-heart"></i>
-							</div>
-						{% endif %}
+							{% endif %}
 
+
+						</a>
 					</div>
 
+				</article>
+			{% else %}
 
-				</div>
+				<td colspan="5">no records found</td>
+				{# <a href="{{ path('app_recipe_new') }}">Create new</a> #}
+			{% endfor %}
 
-			</article>
-		{% else %}
+		</div>
 
-			<td colspan="5">Aucune recette</td>
-			{# <a href="{{ path('app_recipe_new') }}">Create new</a> #}
-		{% endfor %}
 
-	</div>
-{% endblock %}
+	{% endblock %}
+	{% block javascripts %}{% endblock %}
+
