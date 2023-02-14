@@ -7,10 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class FavoriteController extends AbstractController
 {
     #[Route('/favorite', name: 'app_favorite', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function index(): Response
     {
         $user = $this->getUser();
@@ -26,7 +28,7 @@ class FavoriteController extends AbstractController
     }
 
     #[Route('/{id}/favorite', name: 'app_recipe_favorite')]
-
+    #[IsGranted('ROLE_USER')]
     public function like(Recipe $recipe, EntityManagerInterface $manager): Response
     {
 
