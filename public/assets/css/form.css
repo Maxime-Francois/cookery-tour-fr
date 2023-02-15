@@ -61,3 +61,16 @@ height: 50px;
     background: white;
    
 }
+.ts-control {
+    border: 1px solid #1F1F1F;
+    padding: 8px 8px !important;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    box-shadow: none;
+    border-radius: 3px;
+    display: flex;
+    flex-wrap: wrap;
+}
