@@ -60,10 +60,24 @@ class Recipe
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+
+
+   
+
+   
+
+  
+
+  
+
+
     public function __construct()
     {
         $this->user_favorites = new ArrayCollection();
         $this->ingredients = new ArrayCollection();
+        $this->stepRecipes = new ArrayCollection();
+        $this->step_recipe = new ArrayCollection();
+        $this->step = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -232,6 +246,18 @@ class Recipe
         return $this->imageName;
     }
 
+    public function getRecipe(): ?self
+    {
+        return $this->recipe;
+    }
+
+    public function setRecipe(?self $recipe): self
+    {
+        $this->recipe = $recipe;
+
+        return $this;
+    }
+
     public function getDescription(): ?string
     {
         return $this->description;
@@ -243,6 +269,15 @@ class Recipe
 
         return $this;
     }
+
+ 
+
+  
+
+ 
+
+
+
 
  
 }
