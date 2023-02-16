@@ -23,9 +23,15 @@
 .form-container form input {
 height: 50px;
     border-radius: 10px;
-    border: 1px solid #1F1F1F;
     font-size: 20px;
     padding-left: 10px;
+}
+#recipe_description{
+height: 95px;
+        border-radius: 10px;
+        font-size: 20px;
+        padding-left: 10px;
+        border: 1px solid black;
 }
 .form-container form select {
     height: 50px;

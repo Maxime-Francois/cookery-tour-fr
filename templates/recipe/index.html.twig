@@ -17,7 +17,8 @@
 	<div class="recipe-container">
 		{% for recipe in recipes %}
 			<article class="recipe-card">
-				<img src="{{recipe.image}}">
+				<img src="{{ vich_uploader_asset(recipe, 'imageFile') }}">
+
 				<h3>{{ recipe.name }}</h3>
 				<div class="bottom-card">
 					<div class="infos-container">
@@ -63,5 +64,5 @@
 		</div>
 
 
-{% endblock %}
-{% block javascripts %}{% endblock %}
+	{% endblock %}
+	{% block javascripts %}{% endblock %}

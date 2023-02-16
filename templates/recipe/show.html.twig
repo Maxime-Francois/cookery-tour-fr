@@ -39,22 +39,20 @@
 					<h3>Ingrédients</h3>
 					<div class="sep-line"></div>
 
-				
 
-				{% for name in recipe.ingredients %}
-				<p>-{{name}}</p>	
-				
-				{% endfor %}
+					{% for name in recipe.ingredients %}
+						<p>-{{name}}</p>
 
-				 
-						
-			
+					{% endfor %}
 
 
 				</div>
 
 			</div>
-			<div class="part-img"></div>
+			<div class="part-img">
+				<img src="{{ vich_uploader_asset(recipe, 'imageFile') }}">
+
+			</div>
 		</div>
 		<div class="recipe">
 			<h2>

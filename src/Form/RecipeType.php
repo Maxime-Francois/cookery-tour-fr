@@ -12,6 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class RecipeType extends AbstractType
 {
@@ -28,7 +29,12 @@ class RecipeType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('cooking_time')
-            ->add('image')
+            ->add('imageFile', VichImageType::class, [
+                'label'=>'Image de la recette',
+                'label_attr' => [
+                    'class' => 'label_Image'
+                ]
+            ])
 
             ->add('category', EntityType::class, [
                 'class' => Category::class,
