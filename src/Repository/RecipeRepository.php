@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Recipe;
+use App\Model\SearchData;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @extends ServiceEntityRepository<Recipe>
@@ -53,6 +55,26 @@ class RecipeRepository extends ServiceEntityRepository
             ->getResult()
        ;
    }
+
+    // Find/search recipes by name
+    public function findRecipesByName(string $query)
+    {
+        $qb = $this->createQueryBuilder('s');
+        $qb
+            ->where( 
+                $qb->expr()->andX(
+                    $qb->expr()->orX(
+                        $qb->expr()->like('s.name', ':query'),
+                       
+                    ),
+                   
+                )
+            )
+            ->setParameter('query', '%' . $query . '%');
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
 
 //    public function findOneBySomeField($value): ?Recipe
 //    {

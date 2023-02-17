@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
-use App\Form\HomeType;
+
 use App\Form\RegionType;
+use App\Form\SearchType;
+use App\Model\SearchData;
 use App\Repository\RegionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,13 +17,13 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(Request $request, RegionRepository $regionRepository): Response
     {
-        $form = $this->createForm(RegionType::class);
-        $form->handleRequest($request);
+        $formRegion = $this->createForm(RegionType::class);
+        $formRegion->handleRequest($request);
 
-   
+       
 
         return $this->renderForm('home/index.html.twig', [
-            'region_form' => $form,
+            'region_form' => $formRegion,
             'regions' => $regionRepository->findAll()
         ]);
 

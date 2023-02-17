@@ -17,7 +17,8 @@
 	<div class="recipe-container">
 		{% for recipe in recipes %}
 			<article class="recipe-card">
-				<img src="{{recipe.image}}">
+				<img src="{{ vich_uploader_asset(recipe, 'imageFile') }}">
+
 				<h3>{{ recipe.name }}</h3>
 				<div class="bottom-card">
 					<div class="infos-container">
@@ -59,21 +60,19 @@
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 		<script>
 			function onClickBtnLike(event) {
-            event.preventDefault();
+event.preventDefault();
 
-            const url = this.href;
+const url = this.href;
 
-            const spanCount = this.querySelector('js-likes')
+const spanCount = this.querySelector('js-likes')
 
-            axios.get(url).then(function (response) {
-            const likes = response.data.likes;
-            })
-            }
+axios.get(url).then(function (response) {
+const likes = response.data.likes;
+})
+}
 
-            document.querySelectorAll(".like-button").forEach(function (link) {
-            link.addEventListener('click', onClickBtnLike);
+document.querySelectorAll(".like-button").forEach(function (link) {
+link.addEventListener('click', onClickBtnLike);
 });
-
 		</script>
 	{% endblock %}
-

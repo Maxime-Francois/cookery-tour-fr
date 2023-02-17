@@ -32,19 +32,13 @@
 
 					<div class="dropdown" id="dropdown">
 						<a href="{{path('app_favorite', {username: app.user.username})}}">
-
 							Mes recettes favorites
 						</a>
 						<a href="{{path('app_logout')}}">
 							Déconnexion
 						</a>
-
 					</div>
-
-
 				{% endif %}
-
-
 			</ul>
 
 		</div>
@@ -54,12 +48,19 @@
 
 
 		<div class="search-block">
-			<form class="search-form">
+			{# <form class="search-form">
 				<span>
 					<i class="fa-solid fa-xmark search-cancel"></i>
 				</span>
+		
 				<input type="search" name="search" class="search-input" placeholder="Search here...">
-			</form>
+			</form> #}
+			{# {% include "partials/searchData.html.twig" with {
+				form: form
+			} only %} #}
+
+{{ render(controller('App\\Controller\\SearchController::searchBar')) }}
+
 		</div>
 	</nav>
 </header>
