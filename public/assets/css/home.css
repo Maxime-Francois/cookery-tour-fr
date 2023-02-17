@@ -68,7 +68,7 @@
    color: white !important;
         border-radius: 2px;
         position: relative;
-        background: #012290;
+        
         height: 40px;
         text-transform: uppercase;
         margin-bottom: 0;
@@ -81,6 +81,7 @@
         box-shadow: 4px 4px 20px -2px rgba(0, 0, 0, 0.35);
         transition: all 0.4s;
             border-radius: 15px;
+                background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
 }
 .dropRegion:hover .dropRegion h2 {
     transform: translateY(-2px);
@@ -118,9 +119,9 @@
 
 
 #toggle:focus~h2 {
-    background: white;
+ 
     transition: background 0.45s;
-    color: #012290 !important;
+    
 }
 
 #toggle:checked~ul {
@@ -150,7 +151,7 @@
     display: inline-block;
     line-height: 1.5;
     width: 100%;
-    background:#012290;
+    background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
     transition: background 1s;
     box-shadow: 2px 2px 10px -2px rgba(0, 0, 0, 0.35);
 }

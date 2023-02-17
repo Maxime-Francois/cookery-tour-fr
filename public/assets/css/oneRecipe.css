@@ -60,7 +60,7 @@
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 .recipe h2 {
@@ -136,4 +136,6 @@
 
 .recipe-content p {
     font-size: 25px;
+        width: 80%;
+        margin: auto;
 }

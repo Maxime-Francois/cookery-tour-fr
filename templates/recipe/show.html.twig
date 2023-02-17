@@ -27,7 +27,7 @@
 				</div>
 				<div class="line-info">
 					<h3>Temps de préparation :</h3>
-					<p>{{ recipe.cookingTime ? recipe.cookingTime|date('H:i:s') : '' }}min</p>
+					<p>{{ recipe.cookingTime ? recipe.cookingTime }}min</p>
 
 				</div>
 				<div class="line-info">
@@ -61,6 +61,7 @@
 			<div class="recipe-content">
 				<p>
 {{ recipe.description|nl2br }}
+
 
 
 				</p>

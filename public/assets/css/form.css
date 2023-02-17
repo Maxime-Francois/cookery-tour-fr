@@ -24,7 +24,17 @@
 height: 50px;
     border-radius: 10px;
     font-size: 20px;
+    padding-left: 10px; 
+}
+#recipe_cooking_time{
+height: 50px;
+    border-radius: 10px;
+    font-size: 20px;
     padding-left: 10px;
+}
+#recipe_ingredients{
+    height: 75px;
+  
 }
 #recipe_description{
 height: 95px;
