@@ -1,21 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Recipe{% endblock %}
+{% block title %}New Recipe
+{% endblock %}
 
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('assets/css/form.css')}}">
+	
+
 {% endblock %}
 
 
 {% block body %}
-<div class="bloc-title">
-	<h1>AJOUTER VOTRE RECETTE</h1>
+	<div class="bloc-title">
+		<h1>AJOUTER VOTRE RECETTE</h1>
 
 
-</div>
+	</div>
 
 
-    {{ include('recipe/_form.html.twig') }}
+	{{ include('recipe/_form.html.twig') }}
 
-    <a href="{{ path('app_recipe_index') }}">Revenir aux recettes </a>
+	<a href="{{ path('app_recipe_index') }}">Revenir aux recettes
+	</a>
 {% endblock %}
+
+

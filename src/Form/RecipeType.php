@@ -47,10 +47,13 @@ class RecipeType extends AbstractType
                 'choice_label' => 'name'
             ])
             ->add('ingredients', EntityType::class, [
-            'class' => Ingredient::class,
-            'multiple' => 'true',
-            'choice_label' => 'name'
-        ])
+                 'class' => Ingredient::class,
+            'multiple' => true,
+                'choice_label' => 'name',
+                'attr' => [
+                    'class' => 'select-tags'
+                ]
+            ])
         ->add('description')
                 // 'search' => $this->url->generate('ingredients'),
                 // 'label_property' => 'name',
