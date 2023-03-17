@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ recipe.name }} - COOKERY TOUR
+{% block title %}
+	{{ recipe.name }}
+	- COOKERY TOUR
 
 {% endblock %}
 
@@ -61,11 +63,26 @@
 			</h2>
 			<div class="recipe-content">
 				<p>
-{{ recipe.description|nl2br }}
-
+					{{ recipe.description|nl2br }}
 
 
 				</p>
+			</div>
+			<div class="like-container">
+			<span class="jaime">J'aime</span>
+				<a class="like-button" href="{{path('app_recipe_favorite',{'id': recipe.id}) }}">
+				
+					<span class="js-likes">{{recipe.likes2 }}</span>
+
+					{% if app.user and (recipe in userFavorites) %}
+						<i class="fa-solid fa-heart"></i>
+					{% else %}
+						<i class="fa-regular fa-heart"></i>
+					{% endif %}
+
+
+				</a>
+
 			</div>
 
 			<div class="links-container">

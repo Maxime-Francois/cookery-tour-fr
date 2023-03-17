@@ -19,11 +19,19 @@ class FavoriteController extends AbstractController
         if(!$user){
             return $this->redirectToRoute('app_login');
         }
+        $user = $this->getUser();
+
+        if ($user) {
+            $userFavorites = $user->getFavorites();
+        } else {
+            $userFavorites = null;
+        }
 
        $userFavorites = $user->getFavorites();
 
         return $this->render('favorite/favorite.html.twig', [
-            'recipes' => $userFavorites
+            'recipes' => $userFavorites,
+            'userFavorites' => $userFavorites
         ]);
     }
 

@@ -139,3 +139,45 @@
         width: 80%;
         margin: auto;
 }
+
+.like-container{
+display: flex;
+justify-content: center;
+padding: 30px 0px;
+gap: 20px;
+align-items: baseline;
+}
+.like-container a {
+font-size: 25px;
+    font-family: "Rubik";
+    color: #1F1F1F;
+    background: white;
+    padding: 5px 12px;
+    border-radius: 15px;
+    transition: all 0.5s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+}
+.like-container a:hover{
+background: var(--card-blue);
+    color: white;
+}
+.like-button i {
+    font-size: 25px;
+    color: rgb(164, 11, 11);
+
+}
+
+.like-button {
+    background: white;
+    padding: 9px;
+    border-radius: 30px;
+    display: flex;
+   
+    cursor: pointer;
+}
+.jaime{
+    font-size: 25px;
+}

@@ -64,8 +64,16 @@ class RecipeController extends AbstractController
     #[Route('/{id}', name: 'app_recipe_show', methods: ['GET'])]
     public function show(Recipe $recipe): Response
     {
+        $user = $this->getUser();
+
+        if ($user) {
+            $userFavorites = $user->getFavorites();
+        } else {
+            $userFavorites = null;
+        }
         return $this->render('recipe/show.html.twig', [
             'recipe' => $recipe,
+            'userFavorites' => $userFavorites
         ]);
     }
 
@@ -109,5 +117,7 @@ class RecipeController extends AbstractController
 
         return $this->redirectToRoute('app_recipe_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
 
  }

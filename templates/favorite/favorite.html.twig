@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recipe index
+{% block title %}Recettes favorites  - COOKERY TOUR
 {% endblock %}
 
 {% block stylesheets %}
@@ -9,10 +9,8 @@
 
 {% block body %}
 	<div class="bloc-title">
-		<h1>MES RECETTES FAVORITES</h1>
+		<h1> RECETTES FAVORITES</h1>
 	</div>
-
-	
 
 
 	<div class="recipe-container">
@@ -44,7 +42,13 @@
 						<a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">Voir la recette</a>
 						<a class="like-button" href="{{path('app_recipe_favorite',{'id': recipe.id}) }}">
 							<span>{{recipe.likes2 }}</span>
-							<i class="fa-solid fa-heart"></i>
+							{% if app.user and (recipe in userFavorites) %}
+								<i class="fa-solid fa-heart"></i>
+							{% else %}
+								<i class="fa-regular fa-heart"></i>
+							{% endif %}
+
+
 						</a>
 					</div>
 
@@ -58,22 +62,22 @@
 		</div>
 	{% endblock %}
 	{% block javascripts %}
-		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-		<script>
-			function onClickBtnLike(event) {
-event.preventDefault();
-
-const url = this.href;
-
-const spanCount = this.querySelector('js-likes')
-
-axios.get(url).then(function (response) {
-const likes = response.data.likes;
-})
-}
-
-document.querySelectorAll(".like-button").forEach(function (link) {
-link.addEventListener('click', onClickBtnLike);
-});
-		</script>
+		{# <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+				<script>
+					function onClickBtnLike(event) {
+		event.preventDefault();
+		
+		const url = this.href;
+		
+		const spanCount = this.querySelector('js-likes')
+		
+		axios.get(url).then(function (response) {
+		const likes = response.data.likes;
+		})
+		}
+		
+		document.querySelectorAll(".like-button").forEach(function (link) {
+		link.addEventListener('click', onClickBtnLike);
+		});
+				</script> #}
 	{% endblock %}
