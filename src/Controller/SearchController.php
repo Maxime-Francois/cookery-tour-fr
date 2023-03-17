@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\IngredientRepository;
 use App\Repository\RecipeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -52,6 +53,7 @@ class SearchController extends AbstractController
         $query = $request->request->all('form')['query'];
         if ($query) {
             $recipes = $repo->findRecipesByName($query);
+             
         }
         return $this->render('search/index.html.twig', [
             'recipes' => $recipes,

@@ -392,3 +392,35 @@ img {
   display: none;
   visibility: hidden;
 }
+.container-mentions{
+  display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1500px;
+    width: 80%;
+    margin: auto;
+}
+.container-mentions article {
+  display: flex;
+    flex-direction: column;
+}
+.container-mentions a {
+      text-decoration: underline;
+}
+.container-mentions a:hover{
+color: #f9748f;
+}
+.rgpd a:visited {
+  color: #1F1F1F;
+}
+.rgpd a:hover {
+  color: #f9748f;
+}
+.rgpd{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.footer-container{
+      padding: 10px 0px;
+}

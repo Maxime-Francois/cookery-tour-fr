@@ -3,26 +3,22 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Welcome!
+			{% block title %}Cookery tour 
 			{% endblock %}
 		</title>
+		
 		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link
-		rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		{# <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet"> #}
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
-
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-		<link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
 		<link rel="stylesheet" href="{{ asset('assets/css/main.css')}}">
-		<link
-		href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
-
-
-
+		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
 		{# <link rel="stylesheet" href="https://unpkg.com/papercss@1.9.1/dist/paper.min.css"/> #}
+
+
+
+
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
@@ -35,6 +31,19 @@ $('.select-tags').select2();
 		<script src="{{ asset('assets/js/main.js')}}" defer></script>
 		<script src="{{ asset('assets/js/like.js')}}" defer></script>
 		<script src="{{ asset('assets/js/selectForm.js')}}" defer></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-THF51002Y7"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+function gtag() {
+dataLayer.push(arguments);
+}
+gtag('js', new Date());
+
+gtag('config', 'G-THF51002Y7');
+</script>
+
 
 
 		<meta
@@ -51,5 +60,7 @@ $('.select-tags').select2();
 		{% block body %}
 			<div class="main-container"></div>
 		{% endblock %}
+{% include "partials/footer.html.twig" %}
+
 	</body>
 </html>

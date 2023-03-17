@@ -32,6 +32,20 @@ class HomeController extends AbstractController
 
     }
 
+    #[Route('/mentions-légales', name: 'mentions-legales')]
+    public function mentions()
+    {
+
+        return $this->renderForm('rgpd/mentions-légales.html.twig');
+    }
+    #[Route('/politique-de-confidentialité', name: 'politique')]
+    public function politique()
+    {
+
+        return $this->renderForm('rgpd/politique-de-confidentialité.html.twig');
+    
+    }
+
  
 
 }

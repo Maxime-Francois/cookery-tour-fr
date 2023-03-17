@@ -28,8 +28,8 @@ class Recipe
     #[ORM\Column(nullable: true)]
     private ?string $imageName = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updatedAt = null;
+    // #[ORM\Column(nullable: true)]
+    // private ?\DateTimeImmutable $updatedAt = null;
 
   
 
@@ -61,23 +61,13 @@ class Recipe
     private ?string $description = null;
 
 
-
-   
-
-   
-
-  
-
-  
-
-
     public function __construct()
     {
         $this->user_favorites = new ArrayCollection();
         $this->ingredients = new ArrayCollection();
-        $this->stepRecipes = new ArrayCollection();
-        $this->step_recipe = new ArrayCollection();
-        $this->step = new ArrayCollection();
+        // $this->stepRecipes = new ArrayCollection();
+        // $this->step_recipe = new ArrayCollection();
+        // $this->step = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -227,7 +217,7 @@ class Recipe
         if (null !== $imageFile) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
+            // $this->updatedAt = new \DateTimeImmutable();
         }
     }
 
