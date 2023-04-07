@@ -26,6 +26,7 @@ class FavoriteController extends AbstractController
         } else {
             $userFavorites = null;
         }
+        
 
        $userFavorites = $user->getFavorites();
 
