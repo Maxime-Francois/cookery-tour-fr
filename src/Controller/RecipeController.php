@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Recipe;
 use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 //use Doctrine\Persistence\ObjectManager;
@@ -12,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 #[Route('/recipe')]
 class RecipeController extends AbstractController
@@ -26,7 +28,6 @@ class RecipeController extends AbstractController
             $userFavorites = $user->getFavorites();
         } else {
             $userFavorites = null;
-           
         }
 
 
@@ -47,10 +48,10 @@ class RecipeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->getUser();
-             $recipe->setUserId($user->getId());
+            $recipe->setUserId($user->getId());
 
             $recipeRepository->save($recipe, true);
-           
+
 
             return $this->redirectToRoute('app_recipe_show', ['id' => $recipe->getId()], Response::HTTP_SEE_OTHER);
         }
@@ -58,6 +59,27 @@ class RecipeController extends AbstractController
         return $this->renderForm('recipe/new.html.twig', [
             'recipe' => $recipe,
             'form' => $form,
+        ]);
+    }
+
+    // #[Security("is_granted('ROLE_USER') and user.getId() === recipe.getUserId()")]
+    #[Route('/created', name: 'app_created_recipes', methods: ['GET'])]
+    public function mesRecettes(RecipeRepository $recipeRepository): Response
+    {
+        //ont récupère le user
+        $user = $this->getUser();
+        if ($user) {
+            $userFavorites = $user->getFavorites();
+        } else {
+            $userFavorites = null;
+        }
+
+
+        $recipes = $recipeRepository->findAllByUserId($user->getId());
+
+        return $this->render('recipe/createdRecipe.html.twig', [
+            'recipes' => $recipes,
+            'userFavorites' => $userFavorites
         ]);
     }
 
@@ -84,13 +106,13 @@ class RecipeController extends AbstractController
         $user = $this->getUser();
         $userId = $user->getId();
         $recipeUserId = $recipe->getUserId();
-     
+
         //si l'id du user ne correspond pas a la l'id du userid de la recette
-        if($userId !== $recipeUserId){ 
-        //alors ont redirige l'utilisateur vers la recette
+        if ($userId !== $recipeUserId) {
+            //alors ont redirige l'utilisateur vers la recette
             return $this->redirectToRoute('app_recipe_show', ['id' => $recipe->getId()], Response::HTTP_SEE_OTHER);
         }
-       
+
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
@@ -117,7 +139,4 @@ class RecipeController extends AbstractController
 
         return $this->redirectToRoute('app_recipe_index', [], Response::HTTP_SEE_OTHER);
     }
-
-    
-
- }
+}

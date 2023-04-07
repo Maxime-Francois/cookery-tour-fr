@@ -76,6 +76,41 @@ class RecipeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @return Recipe[] Returns an array of Recipe by user id
+     */
+    public function findAllByUserId($userId): array
+    {
+        return $this->createQueryBuilder('r')
+    
+            ->where('r.user_id = :userId')
+            ->setParameter('userId', $userId)
+            ->getQuery()
+            ->getResult();
+    }
+
+ 
+
+    // Find/search recipes by name
+    // public function findIngredientByName(string $query)
+    // {
+    //     $qb = $this->createQueryBuilder('s');
+    //     $qb
+    //         ->where(
+    //             $qb->expr()->andX(
+    //                 $qb->expr()->orX(
+    //                     $qb->expr()->like('s.name', ':query'),
+
+    //                 ),
+
+    //             )
+    //         )
+    //         ->setParameter('query', '%' . $query . '%');
+    //     return $qb
+    //         ->getQuery()
+    //         ->getResult();
+    // }
+
 //    public function findOneBySomeField($value): ?Recipe
 //    {
 //        return $this->createQueryBuilder('r')

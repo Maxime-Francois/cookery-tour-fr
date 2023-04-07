@@ -51,12 +51,14 @@ class SearchController extends AbstractController
             $userFavorites = null;
         }
         $query = $request->request->all('form')['query'];
+
         if ($query) {
-            $recipes = $repo->findRecipesByName($query);
-             
+              $recipes = $repo->findRecipesByName($query); 
         }
+        
         return $this->render('search/index.html.twig', [
             'recipes' => $recipes,
+         
             'userFavorites' => $userFavorites
         ]);
     }
