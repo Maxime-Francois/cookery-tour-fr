@@ -12,14 +12,15 @@
 
 
 {% block body %}
-	<div class="bloc-title">
-		<h1>{{ recipe.name }}</h1>
-
-
-	</div>
-
-
 	<div class="main">
+
+
+		<div class="bloc-title">
+			<h1>{{ recipe.name }}</h1>
+
+
+		</div>
+
 
 		<div class="flex-part">
 			<div class="part-info">
@@ -69,9 +70,9 @@
 				</p>
 			</div>
 			<div class="like-container">
-			<span class="jaime">J'aime</span>
+				<span class="jaime">J'aime</span>
 				<a class="like-button" href="{{path('app_recipe_favorite',{'id': recipe.id}) }}">
-				
+
 					<span class="js-likes">{{recipe.likes2 }}</span>
 
 					{% if app.user and (recipe in userFavorites) %}
@@ -110,8 +111,6 @@
 			</div>
 
 		</div>
-
-
 	</div>
 
 

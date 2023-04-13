@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-<script src="{{ asset('assets/cookies/tarteaucitron.js')}}"></script>
+		<script src="{{ asset('assets/cookies/tarteaucitron.js')}}"></script>
 
-<script type="text/javascript">
-	tarteaucitron.init({
+		<script type="text/javascript">
+			tarteaucitron.init({
 "privacyUrl": "http://0.0.0.0:8080/politique-de-confidentialit%C3%A9", /* Privacy policy url */
 
 "bodyPosition": "bottom", /* or top to bring it as first element for accessibility */
@@ -55,9 +55,8 @@ tarteaucitron.user.gtagUa = 'G-THF51002Y7';
 tarteaucitron.user.gtagMore = function () { /* add here your optionnal _ga.push() */
 };
 (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
-</script>
-<link rel="icon" type="image/png" href="{{ asset('assets/img/icons/logo-cookery.png') }}"/>
-
+		</script>
+		<link rel="icon" type="image/png" href="{{ asset('assets/img/icons/logo-cookery.png') }}"/>
 
 
 		<meta charset="UTF-8">
@@ -71,16 +70,19 @@ tarteaucitron.user.gtagMore = function () { /* add here your optionnal _ga.push(
 		<link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 		<link rel="stylesheet" href="{{ asset('assets/css/main.css')}}">
-		<link
-		href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
-		{# <link rel="stylesheet" href="https://unpkg.com/papercss@1.9.1/dist/paper.min.css"/> #}
+		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 		
+
+		{# <link rel="stylesheet" href="https://unpkg.com/papercss@1.9.1/dist/paper.min.css"/> #}
+
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+	
 		<script>
 			$(function () {
 $('.select-tags').select2();
@@ -90,8 +92,9 @@ $('.select-tags').select2();
 		<script src="{{ asset('assets/js/main.js')}}" defer></script>
 		<script src="{{ asset('assets/js/like.js')}}" defer></script>
 		<script src="{{ asset('assets/js/selectForm.js')}}" defer></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-		
+
 
 
 		<meta
@@ -105,10 +108,19 @@ $('.select-tags').select2();
 	</head>
 	<body>
 		{% include "partials/nav.html.twig" %}
+
+
+
 		{% block body %}
-			<div class="main-container"></div>
+
+
+			{# <div class="main-container"></div> #}
 		{% endblock %}
 		{% include "partials/footer.html.twig" %}
 
 	</body>
+<script>
+	AOS.init();
+</script>
+
 </html>

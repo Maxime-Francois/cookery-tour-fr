@@ -48,12 +48,30 @@ font-family: 'Neucha', cursive;
   height: -webkit-fill-available;
   color: var(--color-black);
   background-color: var(--color-white);
+
+
 }
 
 main {
   overflow: hidden;
 
 }
+.main{
+  background-image: url(../img/blob-scene-haikei\ \(3\).svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.main-home {
+  background-image: url(../img/blob-scene-haikei\ \(3\).svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+ 
+    margin-top: 66px;
+    height: 150vh;
+}
+
 
 .bloc-title {
   display: flex;
@@ -74,10 +92,7 @@ main {
 }
 
 .main-container {
-  background-image: url('../img/flat-lay-organic-vegetables-with-plate-cutlery.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+
   height: 100%;
       margin-top: 67px;
 

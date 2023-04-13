@@ -1,6 +1,7 @@
 .form-container {
     width: 600px;
     margin: auto;
+        padding-bottom: 150px;
 }
 
 .form-container form {
@@ -85,6 +86,12 @@ height: 95px;
         transition: 0.5s;
             font-weight: 600;
                 letter-spacing: 1px;
+}
+.main{
+        background-image: url(../img/blob-scene-haikei\ \(3\).svg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
 }
 
 .form-container .btn:hover {
