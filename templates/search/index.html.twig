@@ -8,8 +8,11 @@
 
 
 {% block body %}
+	<div class="main">
 	{% if app.request.method == 'POST' %}
 		{% if recipes | length == 0 %}
+	
+		
 			<div class="bloc-title">
 				<h1>Aucun Résultat</h1>
 			</div>
@@ -67,5 +70,6 @@
 			{% endif %}
 
 		{% endif %}
+</div>
 
 	{% endblock %}

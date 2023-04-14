@@ -26,7 +26,7 @@ class FavoriteController extends AbstractController
         } else {
             $userFavorites = null;
         }
-        
+
 
        $userFavorites = $user->getFavorites();
 
@@ -44,6 +44,8 @@ class FavoriteController extends AbstractController
         // recuperer le user connecté
         $user = $this->getUser();
         $userFavorites = $user->getFavorites();
+
+        
 
         if (!$user) {
 

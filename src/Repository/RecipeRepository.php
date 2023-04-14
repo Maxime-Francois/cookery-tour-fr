@@ -41,33 +41,32 @@ class RecipeRepository extends ServiceEntityRepository
         }
     }
 
-   /**
-    * @return Recipe[] Returns an array of Recipe objects
-    */
-   public function findAllByRegion($regionName): array
-   {
-       return $this->createQueryBuilder('p')
+    /**
+     * @return Recipe[] Returns an array of Recipe objects
+     */
+    public function findAllByRegion($regionName): array
+    {
+        return $this->createQueryBuilder('p')
             ->innerJoin('p.region', 't')
             ->where('t.name = :regionName')
             ->setParameter('regionName', $regionName)
             ->orderBy('t.name', 'DESC')
             ->getQuery()
-            ->getResult()
-       ;
-   }
+            ->getResult();
+    }
 
     // Find/search recipes by name
     public function findRecipesByName(string $query)
     {
         $qb = $this->createQueryBuilder('s');
         $qb
-            ->where( 
+            ->where(
                 $qb->expr()->andX(
                     $qb->expr()->orX(
                         $qb->expr()->like('s.name', ':query'),
-                       
+
                     ),
-                   
+
                 )
             )
             ->setParameter('query', '%' . $query . '%');
@@ -82,42 +81,40 @@ class RecipeRepository extends ServiceEntityRepository
     public function findAllByUserId($userId): array
     {
         return $this->createQueryBuilder('r')
-    
+
             ->where('r.user_id = :userId')
             ->setParameter('userId', $userId)
             ->getQuery()
             ->getResult();
     }
+    //find/search recipe by ingredient name
+    public function findByIngredient($ingredient)
+    {
+        return $this->createQueryBuilder('r')
+            ->join('r.ingredients', 'i')
+            ->where('i.name LIKE :ingredient')
+            ->setParameter('ingredient', '%' . $ingredient . '%')
+            ->getQuery()
+            ->getResult();
+    }
 
- 
+    /**
+     * @return Recipe[] Returns an array of Recipe by key word
+     * 
+     * @param keyWord ingredient / region / recipe (name)
+     */
+    public function search($keyWord): array
+    {
+        return $this->createQueryBuilder('r')
+            ->innerJoin('r.ingredients', 'i')
+            ->innerJoin('r.region', 'g')
+            ->where('i.name LIKE :keyWord')
+            ->orWhere('g.name LIKE :keyWord')
+            ->orWhere('r.name LIKE :keyWord')
+            ->setParameter('keyWord', '%' . $keyWord . '%')
+            ->getQuery()
+            ->getResult();
+    }
 
-    // Find/search recipes by name
-    // public function findIngredientByName(string $query)
-    // {
-    //     $qb = $this->createQueryBuilder('s');
-    //     $qb
-    //         ->where(
-    //             $qb->expr()->andX(
-    //                 $qb->expr()->orX(
-    //                     $qb->expr()->like('s.name', ':query'),
-
-    //                 ),
-
-    //             )
-    //         )
-    //         ->setParameter('query', '%' . $query . '%');
-    //     return $qb
-    //         ->getQuery()
-    //         ->getResult();
-    // }
-
-//    public function findOneBySomeField($value): ?Recipe
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    
 }
