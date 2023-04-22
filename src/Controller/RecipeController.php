@@ -62,7 +62,7 @@ class RecipeController extends AbstractController
         ]);
     }
 
-    // #[Security("is_granted('ROLE_USER') and user.getId() === recipe.getUserId()")]
+    #[Security("is_granted('ROLE_USER') and user.getId() === recipe.getUserId()")]
     #[Route('/created', name: 'app_created_recipes', methods: ['GET'])]
     public function mesRecettes(RecipeRepository $recipeRepository): Response
     {
