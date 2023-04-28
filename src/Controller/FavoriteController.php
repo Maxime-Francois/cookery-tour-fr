@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class FavoriteController extends AbstractController
 {
@@ -20,6 +21,7 @@ class FavoriteController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
         $user = $this->getUser();
+        
 
         if ($user) {
             $userFavorites = $user->getFavorites();
@@ -35,6 +37,7 @@ class FavoriteController extends AbstractController
             'userFavorites' => $userFavorites
         ]);
     }
+ 
 
     #[Route('/{id}/favorite', name: 'app_recipe_favorite')]
     #[IsGranted('ROLE_USER')]

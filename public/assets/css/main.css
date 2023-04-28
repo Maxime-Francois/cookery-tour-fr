@@ -440,3 +440,19 @@ color: #f9748f;
 .footer-container{
       padding: 10px 0px;
 }
+.vich-image img {
+  width: 100%;
+}
+.vich-image >div{
+      display: flex;
+        align-items: center;
+        gap: 15px;
+}
+.vich-image a {
+  color: #1F1F1F;
+    text-decoration: underline;
+    font-size: 18px;
+}
+.vich-image a:hover {
+color: var(--color-blue-200);;
+}

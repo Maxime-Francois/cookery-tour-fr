@@ -35,6 +35,13 @@
     <label for="inputPassword">Mot de passe</label>
     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
     </div>
+<div class="forgetr">
+	
+<a href="{{path('app_forgot_password_request')}}">Mot de passe oublié ?</a>
+
+
+</div>
+
    
 
     <input type="hidden" name="_csrf_token"
@@ -55,6 +62,13 @@
     <button class="btn btn-lg btn-primary" type="submit">
         Connexion
     </button>
+    <div class="container-register">
+    <p>
+    Vous ne possédez pas encore de compte créez en un 
+    </p>
+<a href="{{path('app_register')}}">S'inscrire</a>
+
+    </div>
 </form>
 </div>
 </div>

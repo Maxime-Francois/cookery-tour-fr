@@ -6,44 +6,44 @@ use App\Entity\Category;
 use App\Entity\Ingredient;
 use App\Entity\Recipe;
 use App\Entity\Region;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TimeType;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class RecipeType extends AbstractType
 {
 
-    // public function __construct(private UrlGeneratorInterface $url){
-
-
-    // }
-
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('cooking_time')
+            ->add('name', TextType::class, [
+                'label' => 'Nom de la recette'
+            ])
+            ->add( 'cooking_time', TextType::class, [
+            'label' => 'Temps de préparation (en min)'
+        ])
             ->add('imageFile', VichImageType::class, [
                 'label'=>'Image de la recette',
                 'label_attr' => [
                     'class' => 'label_Image'
-                ]
+                ],
+            'required' => false,
+            'delete_label' => 'Supprimer l\'image',
+            'download_label' => 'Télécharger l\'image',
             ])
 
             ->add('category', EntityType::class, [
                 'class' => Category::class,
+            'label' => 'Categorie',
                 'choice_label' => 'name'
             ])
             ->add('region', EntityType::class, [
                 'class' => Region::class,
+            'label' => 'Région de france',
                 'choice_label' => 'name'
             ])
             ->add('ingredients', EntityType::class, [
@@ -54,11 +54,9 @@ class RecipeType extends AbstractType
                     'class' => 'select-tags'
                 ]
             ])
-        ->add('description')
-                // 'search' => $this->url->generate('ingredients'),
-                // 'label_property' => 'name',
-                // 'value_property' => 'id',
-            ;
+            ->add('description', TextType::class, [
+            'label' => 'Étapes de la recette'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

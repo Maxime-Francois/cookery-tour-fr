@@ -6,6 +6,8 @@
 parameters:
 
 services:
+    App\Controller\Admin\FileField:
+        class: EasyCorp\Bundle\EasyAdminBundle\Field\FileField
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

@@ -1,0 +1,8 @@
+easy_admin:
+    entities:
+        Product:
+            class: App\Entity\Product
+            form:
+                fields:
+                    - property: 'imageFile'
+                      type: 'VichImageType'

@@ -24,18 +24,17 @@ function onClickBtnLike(event) {
         }
 
     });
-    // si l'utilisateur n'est pas connecté il est redirigé vers la page login
-    if (!loggedIn()) {
-        window.location.href = 'http://0.0.0.0:8080/login';
-    }
     
-    function loggedIn() {
-        // Check if the JSESSIONID cookie is present
-        return document.cookie.split(';').some((cookie) => {
-            return cookie.trim().startsWith('JSESSIONID=');
-        });
-    }
-
+  
+    // function loggedIn() {
+    //     // Check if the PHPSESSID cookie is present
+    //     return document.cookie.split(';').some((cookie) => {
+    //         return cookie.trim().startsWith('PHPSESSID=');
+    //     });
+    // }
+    // if (!loggedIn()) {
+    //     window.location.href = 'http://0.0.0.0:8080/login';
+    // }
 
     // supression de la recette dans les favoris
     if (favoriteUrl == window.location.href) {

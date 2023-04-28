@@ -21,6 +21,11 @@ class Region
     #[ORM\OneToMany(mappedBy: 'region', targetEntity: Recipe::class)]
     private Collection $recipe;
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     public function __construct()
     {
         $this->recipe = new ArrayCollection();
