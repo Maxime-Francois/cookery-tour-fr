@@ -176,4 +176,18 @@ display: block;
     font-size: 1.2rem;
     color: #fff;
 }
+.map svg{
+    width: 100%;
+        height: 90vh;
+}
+.map{
+    margin-top: 50px;
+}
+.map svg path{
+    cursor: pointer;
+  
+}
+.map svg path:hover{
+    fill: #f78ca0;
+}
 
