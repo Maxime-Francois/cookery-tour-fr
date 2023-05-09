@@ -6,12 +6,14 @@ use App\Entity\Category;
 use App\Entity\Ingredient;
 use App\Entity\Recipe;
 use App\Entity\Region;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class RecipeType extends AbstractType
 {
@@ -23,7 +25,7 @@ class RecipeType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nom de la recette'
             ])
-            ->add( 'cooking_time', TextType::class, [
+            ->add( 'cooking_time', IntegerType::class, [
             'label' => 'Temps de préparation (en min)'
         ])
             ->add('imageFile', VichImageType::class, [
@@ -54,7 +56,7 @@ class RecipeType extends AbstractType
                     'class' => 'select-tags'
                 ]
             ])
-            ->add('description', TextType::class, [
+            ->add('description', TextareaType::class, [
             'label' => 'Étapes de la recette'
             ]);
     }

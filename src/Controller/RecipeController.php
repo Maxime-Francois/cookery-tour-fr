@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Recipe;
 use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -19,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class RecipeController extends AbstractController
 {
     #[Route('/', name: 'app_recipe_index', methods: ['GET'])]
-    public function index(RecipeRepository $recipeRepository, Request $request): Response
+    public function index(RecipeRepository $recipeRepository, Request $request, PaginatorInterface $paginator): Response
     {
 
         $user = $this->getUser();
@@ -30,10 +31,14 @@ class RecipeController extends AbstractController
             $userFavorites = null;
         }
 
+        $pagination = $paginator->paginate(
+           $recipeRepository-> paginationQuery(),
+           $request->query->get('page', 1),12
+        );
 
         return $this->render('recipe/index.html.twig', [
-            'recipes' => $recipeRepository->findAll(),
-            'userFavorites' => $userFavorites
+            'userFavorites' => $userFavorites,
+            'pagination' => $pagination
         ]);
     }
 
@@ -62,7 +67,7 @@ class RecipeController extends AbstractController
         ]);
     }
 
-    #[Security("is_granted('ROLE_USER') and user.getId() === recipe.getUserId()")]
+    #[Security("is_granted('ROLE_USER')")]
     #[Route('/created', name: 'app_created_recipes', methods: ['GET'])]
     public function mesRecettes(RecipeRepository $recipeRepository): Response
     {

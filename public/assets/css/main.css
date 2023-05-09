@@ -456,3 +456,23 @@ color: #f9748f;
 .vich-image a:hover {
 color: var(--color-blue-200);;
 }
+.container-img-error{
+  display: flex;
+  justify-content: center;
+}
+.pagination{
+display: flex;
+  justify-content: center;
+  padding-bottom: 50px;
+  gap: 15px;
+
+}
+.pagination span {
+    font-size: 1.5rem;
+}
+.pagination a {
+  color: #1F1F1F;
+}
+.pagination a:hover {
+      color: var(--card-blue);
+}

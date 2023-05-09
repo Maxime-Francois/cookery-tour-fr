@@ -52,11 +52,12 @@ height: 95px;
     padding-left: 10px;
 }
 .select2-container--default .select2-selection--multiple {
-    height: 50px;
+    height: 90px;
     border-radius: 10px;
     border: 1px solid #1F1F1F;
     font-size: 20px;
     padding-left: 5px;
+    overflow: auto;
 }
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
   

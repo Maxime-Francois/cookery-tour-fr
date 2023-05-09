@@ -116,5 +116,15 @@ class RecipeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+  
+    public function paginationQuery() 
+    {
+        return $this->createQueryBuilder('a')
+            ->getQuery();
+          
+    }
+
+
+
     
 }
