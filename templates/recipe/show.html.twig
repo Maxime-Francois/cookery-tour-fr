@@ -71,20 +71,25 @@
 			</div>
 			<div class="like-container">
 				<span class="jaime">J'aime</span>
-				<a class="like-button" href="{{path('app_recipe_favorite',{'id': recipe.id}) }}">
-
-					<span class="js-likes">{{recipe.likes2 }}</span>
-
-					{% if app.user and (recipe in userFavorites) %}
-						<i class="fa-solid fa-heart"></i>
-					{% else %}
+				{% if not is_granted('ROLE_USER') %}
+					<a class="like-button2" href="{{path('app_login') }}">
+						<span class="js-likes">{{recipe.likes2 }}</span>
 						<i class="fa-regular fa-heart"></i>
-					{% endif %}
+					</a>
+				{% else %}
+					<a class="like-button" href="{{path('app_recipe_favorite',{'id': recipe.id}) }}">
+						<span class="js-likes">{{recipe.likes2 }}</span>
 
-
-				</a>
+						{% if app.user and (recipe in userFavorites) %}
+							<i class="fa-solid fa-heart"></i>
+						{% else %}
+							<i class="fa-regular fa-heart"></i>
+						{% endif %}
+					</a>
+				{% endif %}
 
 			</div>
+
 
 			<div class="links-container">
 

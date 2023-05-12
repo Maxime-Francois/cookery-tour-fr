@@ -89,6 +89,15 @@ main {
       letter-spacing: 3px;
 
 }
+.emailSended-container p {
+  text-align: center;
+  font-size: 1.6rem;
+}
+.emailSended-container{
+  padding-bottom: 300px;
+  width: 80%;
+  margin: auto;
+}
 
 .main-container {
 

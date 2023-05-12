@@ -44,21 +44,8 @@
 						</div>
 
 
-						<div class="links-container">
-							<a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">Voir la recette</a>
-							<a class="like-button" href="{{path('app_recipe_favorite',{'id': recipe.id}) }}">
-								<span class="js-likes">{{recipe.likes2 }}</span>
+						{% include "partials/likeButton.html.twig" %}
 
-
-								{% if app.user and (recipe in userFavorites) %}
-									<i class="fa-solid fa-heart"></i>
-								{% else %}
-									<i class="fa-regular fa-heart"></i>
-								{% endif %}
-
-
-							</a>
-						</div>
 
 					</article>
 				{% else %}

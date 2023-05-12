@@ -8,81 +8,54 @@
 {% endblock %}
 
 {% block body %}
-<div class="main">
+	<div class="main">
 
-	<div class="bloc-title">
-		<h1> RECETTES FAVORITES</h1>
-	</div>
-
-
-	<div class="recipe-container">
-		{% for recipe in recipes %}
-<article class="recipe-card {{recipe.id}}" data-aos="fade-up" data-aos-duration="2000">
-
-				<img src="{{ vich_uploader_asset(recipe, 'imageFile') }}">
-
-				<h3>{{ recipe.name }}</h3>
-				<div class="bottom-card">
-					<div class="infos-container">
-						<div class="bloc-info-recipe">
-							<i class="fa-solid fa-location-dot"></i>
-							<span>{{recipe.region.name}}</span>
-
-						</div>
-						<div class="bloc-info-recipe">
-							<i class="fa-solid fa-utensils"></i>
-							<span>{{recipe.category.name}}</span>
-						</div>
-						<div class="bloc-info-recipe">
-							<i class="fa-solid fa-clock"></i>
-							<span>{{ recipe.cookingTime }}
-								min</span>
-						</div>
-					</div>
-
-
-					<div class="links-container">
-						<a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">Voir la recette</a>
-						<a class="like-button" href="{{path('app_recipe_favorite',{'id': recipe.id}) }}">
-							<span>{{recipe.likes2 }}</span>
-							{% if app.user and (recipe in userFavorites) %}
-								<i class="fa-solid fa-heart"></i>
-							{% else %}
-								<i class="fa-regular fa-heart"></i>
-							{% endif %}
-
-
-						</a>
-					</div>
-
-				</article>
-			{% else %}
-
-				<td colspan="5">no records found</td>
-				{# <a href="{{ path('app_recipe_new') }}">Create new</a> #}
-			{% endfor %}
-
+		<div class="bloc-title">
+			<h1>
+				RECETTES FAVORITES</h1>
 		</div>
-</div>
+
+
+		<div class="recipe-container">
+			{% for recipe in recipes %}
+				<article class="recipe-card {{recipe.id}}" data-aos="fade-up" data-aos-duration="2000">
+
+					<img src="{{ vich_uploader_asset(recipe, 'imageFile') }}">
+
+					<h3>{{ recipe.name }}</h3>
+					<div class="bottom-card">
+						<div class="infos-container">
+							<div class="bloc-info-recipe">
+								<i class="fa-solid fa-location-dot"></i>
+								<span>{{recipe.region.name}}</span>
+
+							</div>
+							<div class="bloc-info-recipe">
+								<i class="fa-solid fa-utensils"></i>
+								<span>{{recipe.category.name}}</span>
+							</div>
+							<div class="bloc-info-recipe">
+								<i class="fa-solid fa-clock"></i>
+								<span>{{ recipe.cookingTime }}
+									min</span>
+							</div>
+						</div>
+
+
+						{% include "partials/likeButton.html.twig" %}
+
+
+					</article>
+				{% else %}
+
+					<td colspan="5">no records found</td>
+					{# <a href="{{ path('app_recipe_new') }}">Create new</a> #}
+				{% endfor %}
+
+			</div>
+		</div>
 
 	{% endblock %}
 	{% block javascripts %}
-		{# <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-				<script>
-					function onClickBtnLike(event) {
-		event.preventDefault();
 		
-		const url = this.href;
-		
-		const spanCount = this.querySelector('js-likes')
-		
-		axios.get(url).then(function (response) {
-		const likes = response.data.likes;
-		})
-		}
-		
-		document.querySelectorAll(".like-button").forEach(function (link) {
-		link.addEventListener('click', onClickBtnLike);
-		});
-				</script> #}
 	{% endblock %}

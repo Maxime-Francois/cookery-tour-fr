@@ -6,6 +6,13 @@ function onClickBtnLike(event) {
     const icone = this.querySelector('i');
     const favoriteUrl = "http://0.0.0.0:8080/favorite";
 
+    function loggedIn() {
+        // Check if the PHPSESSID cookie is present
+        return document.cookie.split(';').some((cookie) => {
+            return cookie.trim().startsWith('PHPSESSID=');
+        });
+    }
+
     axios.get(url).then(function (response) {
 
         // comptage de like
@@ -24,17 +31,6 @@ function onClickBtnLike(event) {
         }
 
     });
-    
-  
-    // function loggedIn() {
-    //     // Check if the PHPSESSID cookie is present
-    //     return document.cookie.split(';').some((cookie) => {
-    //         return cookie.trim().startsWith('PHPSESSID=');
-    //     });
-    // }
-    // if (!loggedIn()) {
-    //     window.location.href = 'http://0.0.0.0:8080/login';
-    // }
 
     // supression de la recette dans les favoris
     if (favoriteUrl == window.location.href) {
@@ -43,8 +39,6 @@ function onClickBtnLike(event) {
         clickedCard.remove();
     }
 }
-
-
 
 document.querySelectorAll('a.like-button').forEach(function (link) {
     link.addEventListener('click', onClickBtnLike);

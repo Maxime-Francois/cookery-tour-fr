@@ -181,13 +181,13 @@
     color: white;
 }
 
-.like-button i {
+.like-button i, .like-button2 i {
     font-size: 25px;
     color: rgb(164, 11, 11);
 
 }
 
-.like-button {
+.like-button, .like-button2 {
     background: white;
     padding: 9px;
     border-radius: 30px;
