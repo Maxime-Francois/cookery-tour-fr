@@ -23,7 +23,7 @@
 
 .recipe-card img {
     width: 100%;
-    object-fit: inherit;
+    object-fit: cover;
     aspect-ratio: 1;
 
 }
@@ -106,17 +106,19 @@
 }
 
 .links-container a:hover {
-background: var(--card-blue);
+    background: var(--card-blue);
     color: white;
 }
 
-.like-button i, .like-button2 {
+.like-button i,
+.like-button2 {
     font-size: 20px;
     color: rgb(164, 11, 11);
 
 }
 
-.like-button, .like-button2 {
+.like-button,
+.like-button2 {
     background: white;
     padding: 9px;
     border-radius: 30px;
@@ -124,4 +126,12 @@ background: var(--card-blue);
     position: absolute;
     right: 20px;
     cursor: pointer;
+}
+
+/*------ RESPONSIVE------ */
+
+@media(max-width:320px) {
+    .links-container {
+        padding-right: 30px;
+    }
 }

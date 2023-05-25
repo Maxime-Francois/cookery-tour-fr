@@ -28,11 +28,6 @@ class Recipe
     #[ORM\Column(nullable: true)]
     private ?string $imageName = null;
 
-    // #[ORM\Column(nullable: true)]
-    // private ?\DateTimeImmutable $updatedAt = null;
-
-  
-
     #[ORM\Column]
     private ?int $cooking_time = null;
 
@@ -87,7 +82,6 @@ class Recipe
         return $this;
     }
 
-  
 
     public function getCookingTime(): ?int
     {
@@ -259,15 +253,6 @@ class Recipe
 
         return $this;
     }
-
- 
-
-  
-
- 
-
-
-
 
  
 }

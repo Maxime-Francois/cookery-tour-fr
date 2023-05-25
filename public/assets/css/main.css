@@ -41,14 +41,14 @@ html {
 }
 
 body {
-font-family: 'Neucha', cursive;
+  font-family: 'Neucha', cursive;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   height: -webkit-fill-available;
   color: var(--color-black);
   background-color: var(--color-white);
-padding-top: 66px;
+  padding-top: 66px;
 
 }
 
@@ -56,19 +56,23 @@ main {
   overflow: hidden;
 
 }
-.main{
+
+.main {
   background-image: url(../img/blob-scene-haikei\ \(3\).svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+      background-attachment: fixed;
 }
+
 .main-home {
   background-image: url(../img/blob-scene-haikei\ \(3\).svg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
- 
-   
+      background-attachment: fixed;
+
+
 }
 
 
@@ -83,17 +87,19 @@ main {
 }
 
 .bloc-title h1 {
-    text-align: center;
-      text-transform: uppercase;
-      font-weight: 800;
-      letter-spacing: 3px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 3px;
 
 }
+
 .emailSended-container p {
   text-align: center;
   font-size: 1.6rem;
 }
-.emailSended-container{
+
+.emailSended-container {
   padding-bottom: 300px;
   width: 80%;
   margin: auto;
@@ -102,7 +108,7 @@ main {
 .main-container {
 
   height: 100%;
-      margin-top: 67px;
+  margin-top: 67px;
 
 }
 
@@ -174,7 +180,7 @@ img {
   background-color: var(--color-white);
   box-shadow: var(--shadow-medium);
   position: fixed;
-  
+
 }
 
 .navbar {
@@ -238,7 +244,7 @@ img {
   align-items: center;
   justify-content: flex-start;
   column-gap: var(--gap);
- 
+
   cursor: pointer;
   border-radius: var(--radius);
   border: none;
@@ -274,8 +280,8 @@ img {
 }
 
 .dropdown a:hover {
-  
-    color: var(--color-blue-200);
+
+  color: var(--color-blue-200);
 }
 
 .show {
@@ -283,6 +289,8 @@ img {
   opacity: 1;
   transform: translateY(2rem);
 }
+
+/*------ RESPONSIVE---- */
 
 
 @media only screen and (min-width: 48rem) {
@@ -417,71 +425,116 @@ img {
   display: none;
   visibility: hidden;
 }
-.container-mentions{
+
+.container-mentions {
   display: flex;
-    flex-direction: column;
-    gap: 30px;
-    max-width: 1500px;
-    width: 80%;
-    margin: auto;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 1500px;
+  width: 80%;
+  margin: auto;
 }
+
 .container-mentions article {
   display: flex;
-    flex-direction: column;
+  flex-direction: column;
 }
+
 .container-mentions a {
-      text-decoration: underline;
+  text-decoration: underline;
 }
-.container-mentions a:hover{
-color: #f9748f;
+
+.container-mentions a:hover {
+  color: #f9748f;
 }
+
 .rgpd a:visited {
   color: #1F1F1F;
 }
+
 .rgpd a:hover {
   color: #f9748f;
 }
-.rgpd{
+
+.rgpd {
   display: flex;
   gap: 20px;
   justify-content: center;
 }
-.footer-container{
-      padding: 10px 0px;
+
+.footer-container {
+  padding: 10px 0px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
 .vich-image img {
   width: 100%;
 }
-.vich-image >div{
-      display: flex;
-        align-items: center;
-        gap: 15px;
+
+.vich-image>div {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
+
 .vich-image a {
   color: #1F1F1F;
-    text-decoration: underline;
-    font-size: 18px;
+  text-decoration: underline;
+  font-size: 18px;
 }
+
 .vich-image a:hover {
-color: var(--color-blue-200);;
+  color: var(--color-blue-200);
+  ;
 }
-.container-img-error{
+
+.container-img-error {
   display: flex;
   justify-content: center;
 }
-.pagination{
-display: flex;
+
+.pagination {
+  display: flex;
   justify-content: center;
   padding-bottom: 50px;
   gap: 15px;
 
 }
+
 .pagination span {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
+
 .pagination a {
   color: #1F1F1F;
 }
+
 .pagination a:hover {
-      color: var(--card-blue);
+  color: var(--card-blue);
+}
+
+@media (max-width:768px) {
+  .show {
+
+    transform: translateY(7rem);
+  }
+
+  .dropdown {
+    position: fixed;
+    width: 70%;
+
+  }
+}
+
+@media(max-width:320px) {
+  .select-container {
+
+    width: 90%;
+
+  }
+
+  .dropRegion h2 {
+    font-size: 1.1rem;
+
+  }
 }

@@ -3,25 +3,28 @@
 namespace App\Controller;
 
 use App\Entity\Recipe;
+use App\Repository\RecipeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class FavoriteController extends AbstractController
 {
     #[Route('/favorite', name: 'app_favorite', methods: ['GET'])]
     #[IsGranted('ROLE_USER')]
-    public function index(): Response
+    public function index(RecipeRepository $recipeRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $user = $this->getUser();
-        if(!$user){
+        if (!$user) {
             return $this->redirectToRoute('app_login');
         }
         $user = $this->getUser();
-        
+
 
         if ($user) {
             $userFavorites = $user->getFavorites();
@@ -30,14 +33,20 @@ class FavoriteController extends AbstractController
         }
 
 
-       $userFavorites = $user->getFavorites();
+        $userFavorites = $user->getFavorites();
+
+        $userFavorites = $paginator->paginate(
+            $recipeRepository->paginationQuery(),
+            $request->query->get('page', 1),
+            12
+        );
 
         return $this->render('favorite/favorite.html.twig', [
-            'recipes' => $userFavorites,
+            'pagination' => $userFavorites,
             'userFavorites' => $userFavorites
         ]);
     }
- 
+
 
     #[Route('/{id}/favorite', name: 'app_recipe_favorite')]
     #[IsGranted('ROLE_USER')]
@@ -48,7 +57,7 @@ class FavoriteController extends AbstractController
         $user = $this->getUser();
         $userFavorites = $user->getFavorites();
 
-        
+
 
         if (!$user) {
 

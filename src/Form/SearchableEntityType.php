@@ -18,11 +18,9 @@ use Symfony\Component\Routing\Loader\Configurator\CollectionConfigurator;
 
 class SearchableEntityType extends AbstractType
 {
-    public function __construct(private EntityManagerInterface $em){
-        
+    public function __construct(private EntityManagerInterface $em)
+    {
     }
-
-
 
     public function configureOptions(OptionsResolver $resolver)
 
@@ -40,27 +38,25 @@ class SearchableEntityType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addModelTransformer(new CallbackTransformer(
-            function (Collection $value):array{
-                return $value->map(fn($d) =>(string) $d->getId())->toArray();
+            function (Collection $value): array {
+                return $value->map(fn ($d) => (string) $d->getId())->toArray();
             },
             function (array $ids) use ($options): Collection {
-                if(empty($id)){
+                if (empty($id)) {
                     return new ArrayCollection([]);
                 }
                 return new ArrayCollection(
                     $this->em->getRepository($options['class'])->findBy(['id' => $ids])
                 );
             }
-            
+
         ));
     }
 
-    public function buildView (FormView $view, FormInterface $form, array $options)
-    
+    public function buildView(FormView $view, FormInterface $form, array $options)
+
     {
-        // dd($form->getData());
-        
-        
+
         $view->vars['expanded'] = false;
         $view->vars['placeholder'] = null;
         $view->vars['placeholder_in_choices'] = false;
@@ -82,8 +78,7 @@ class SearchableEntityType extends AbstractType
     private function choices(Collection $value)
     {
         return $value
-        ->map(fn ($d) => new ChoiceView($d, (string)$d->getId(), (string)$d))
-        ->toArray();
+            ->map(fn ($d) => new ChoiceView($d, (string)$d->getId(), (string)$d))
+            ->toArray();
     }
-
 }

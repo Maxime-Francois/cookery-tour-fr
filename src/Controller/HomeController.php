@@ -20,16 +20,12 @@ class HomeController extends AbstractController
         $formRegion = $this->createForm(RegionType::class);
         $formRegion->handleRequest($request);
 
-       
+
 
         return $this->renderForm('home/index.html.twig', [
             'region_form' => $formRegion,
             'regions' => $regionRepository->findAll()
         ]);
-
-        
-
-
     }
 
     #[Route('/mentions-légales', name: 'mentions-legales')]
@@ -43,9 +39,5 @@ class HomeController extends AbstractController
     {
 
         return $this->renderForm('rgpd/politique-de-confidentialité.html.twig');
-    
     }
-
- 
-
 }

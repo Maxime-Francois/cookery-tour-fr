@@ -69,7 +69,7 @@ class RecipeController extends AbstractController
 
     #[Security("is_granted('ROLE_USER')")]
     #[Route('/created', name: 'app_created_recipes', methods: ['GET'])]
-    public function mesRecettes(RecipeRepository $recipeRepository): Response
+    public function mesRecettes(RecipeRepository $recipeRepository,Request $request, PaginatorInterface $paginator): Response
     {
         //ont récupère le user
         $user = $this->getUser();
@@ -80,11 +80,18 @@ class RecipeController extends AbstractController
         }
 
 
-        $recipes = $recipeRepository->findAllByUserId($user->getId());
+        $pagination = $recipeRepository->findAllByUserId($user->getId());
+
+        $pagination = $paginator->paginate(
+            $recipeRepository->paginationQuery(),
+            $request->query->get('page', 1),
+            12
+        );
 
         return $this->render('recipe/createdRecipe.html.twig', [
-            'recipes' => $recipes,
-            'userFavorites' => $userFavorites
+            
+            'userFavorites' => $userFavorites,
+            'pagination' => $pagination
         ]);
     }
 

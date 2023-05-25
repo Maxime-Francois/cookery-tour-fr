@@ -24,9 +24,6 @@ class RecipeCrudController extends AbstractCrudController
         return Recipe::class;
     }
 
-
-
-
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -38,14 +35,7 @@ class RecipeCrudController extends AbstractCrudController
             AssociationField::new('region'),
             AssociationField::new('ingredients'),
             TextareaField::new('description'),
-            IntegerField::new('user_id')
-
-
-
-
-            
-
-
+            IntegerField::new('user_id')  
 
         ];
     }

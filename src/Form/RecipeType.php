@@ -18,7 +18,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 class RecipeType extends AbstractType
 {
 
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder

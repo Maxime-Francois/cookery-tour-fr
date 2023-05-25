@@ -22,9 +22,15 @@
 
     {{ include('recipe/_form.html.twig', {'button_label': 'Éditer'}) }}
 
-    <a href="{{ path('app_recipe_index') }}">Revenir à la recette</a>
+    <div class="links-container">
+<a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">Revenir à la recette</a>
+
+
 
     {{ include('recipe/_delete_form.html.twig') }}
+    </div>
+
+   
 </div>
 
 {% endblock %}

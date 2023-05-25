@@ -199,3 +199,16 @@
 .jaime {
     font-size: 25px;
 }
+/* ----RESPONSIVE------- */
+
+@media(max-width:900px){
+    .flex-part {
+           
+            flex-direction: column-reverse;
+            align-items: center;
+        }
+                .part-img {
+                    width: 70%;
+                    margin-bottom: 50px;
+                }
+}

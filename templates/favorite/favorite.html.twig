@@ -17,7 +17,8 @@
 
 
 		<div class="recipe-container">
-			{% for recipe in recipes %}
+			{% for recipe in pagination %}
+
 				<article class="recipe-card {{recipe.id}}" data-aos="fade-up" data-aos-duration="2000">
 
 					<img src="{{ vich_uploader_asset(recipe, 'imageFile') }}">
@@ -53,9 +54,9 @@
 				{% endfor %}
 
 			</div>
+			{{ knp_pagination_render(pagination) }}
+
 		</div>
 
 	{% endblock %}
-	{% block javascripts %}
-		
-	{% endblock %}
+	{% block javascripts %}{% endblock %}
