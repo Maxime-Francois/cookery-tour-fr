@@ -17,6 +17,7 @@
     display: flex;
     align-items: baseline;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .line-ingredients {
@@ -60,12 +61,12 @@
 }
 
 .part-img img {
-        max-width: 100%;
-            width: 100%;
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-            border-radius: 10px;
-            max-height: 50vh;
-            object-fit: cover;
+    max-width: 100%;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    max-height: 50vh;
+    object-fit: cover;
 }
 
 .recipe {
@@ -86,6 +87,8 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .link {
@@ -181,13 +184,15 @@
     color: white;
 }
 
-.like-button i, .like-button2 i {
+.like-button i,
+.like-button2 i {
     font-size: 25px;
     color: rgb(164, 11, 11);
 
 }
 
-.like-button, .like-button2 {
+.like-button,
+.like-button2 {
     background: white;
     padding: 9px;
     border-radius: 30px;
@@ -199,16 +204,41 @@
 .jaime {
     font-size: 25px;
 }
+
 /* ----RESPONSIVE------- */
 
-@media(max-width:900px){
+@media(max-width:900px) {
     .flex-part {
-           
-            flex-direction: column-reverse;
-            align-items: center;
+
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .part-img {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .part-info {
+        width: 100%;
+
+    }
+}
+
+@media(max-width:560px) {
+    .recipe {
+
+        gap: 20px;
+
+    }
+}
+@media(max-width:490px){
+    .link {
+          
+            width: 100%;
         }
-                .part-img {
-                    width: 70%;
-                    margin-bottom: 50px;
+                .links-container {
+                   
+                    width: 275px;
                 }
 }
