@@ -232,13 +232,15 @@
 
     }
 }
-@media(max-width:490px){
+
+@media(max-width:490px) {
     .link {
-          
-            width: 100%;
-        }
-                .links-container {
-                   
-                    width: 275px;
-                }
+
+        width: 100%;
+    }
+
+    .links-container {
+
+        width: 275px;
+    }
 }

@@ -41,9 +41,19 @@
 									</div>
 									<div class="bloc-info-recipe">
 										<i class="fa-solid fa-clock"></i>
-										<span>{{ recipe.cookingTime }}
-											min</span>
+										{% if recipe.cookingTime >= 60 %}
+											{% set hours = recipe.cookingTime // 60 %}
+											{% set minutes = recipe.cookingTime % 60 %}
+											<span>{{ hours }}
+												h
+												{{ minutes }}
+												min</span>
+										{% else %}
+											<span>{{ recipe.cookingTime }}
+												min</span>
+										{% endif %}
 									</div>
+
 								</div>
 
 

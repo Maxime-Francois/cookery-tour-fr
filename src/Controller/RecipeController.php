@@ -14,15 +14,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\TimeConversionService;
 
 
 #[Route('/recipe')]
 class RecipeController extends AbstractController
 {
-    #[Route('/', name: 'app_recipe_index', methods: ['GET'])]
-    public function index(RecipeRepository $recipeRepository, Request $request, PaginatorInterface $paginator): Response
-    {
+    private $timeConversionService;
 
+    public function __construct(TimeConversionService $timeConversionService)
+    {
+        $this->timeConversionService = $timeConversionService;
+    }
+
+    #[Route('/', name: 'app_recipe_index', methods: ['GET'])]
+    public function index(
+        RecipeRepository $recipeRepository,
+        Request $request,
+        PaginatorInterface $paginator
+    ): Response {
         $user = $this->getUser();
 
         if ($user) {
@@ -32,9 +42,17 @@ class RecipeController extends AbstractController
         }
 
         $pagination = $paginator->paginate(
-           $recipeRepository-> paginationQuery(),
-           $request->query->get('page', 1),12
+            $recipeRepository->paginationQuery(),
+            $request->query->get('page', 1),
+            12
         );
+
+        // Convertir le temps de préparation en heures
+        foreach ($pagination as $recipe) {
+            $cookingTime = $recipe->getCookingTime();
+            $cookingTimeInMinutes = intval($cookingTime); // Convertir en entier
+            $recipe->setCookingTime($cookingTimeInMinutes);
+        }
 
         return $this->render('recipe/index.html.twig', [
             'userFavorites' => $userFavorites,
@@ -105,9 +123,11 @@ class RecipeController extends AbstractController
         } else {
             $userFavorites = null;
         }
+        $cookingTime = $this->timeConversionService->convertMinutesToHours($recipe->getCookingTime());
         return $this->render('recipe/show.html.twig', [
             'recipe' => $recipe,
-            'userFavorites' => $userFavorites
+            'userFavorites' => $userFavorites,
+            'cookingTime' => $cookingTime,
         ]);
     }
 
