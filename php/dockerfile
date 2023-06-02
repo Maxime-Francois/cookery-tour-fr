@@ -1,0 +1,33 @@
+# Utilisez l'image PHP 8 officielle comme base
+FROM php:8-apache
+
+# Installez les dépendances nécessaires
+RUN apt-get update && apt-get install -y \
+    libicu-dev \
+    libzip-dev \
+    zip \
+    unzip
+
+# Activez les modules Apache nécessaires
+RUN a2enmod rewrite
+RUN a2enmod headers
+
+# Installez les extensions PHP nécessaires
+RUN docker-php-ext-install \
+    intl \
+    pdo_mysql \
+    zip
+
+# Configurez le document root Apache
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+# Copiez les fichiers de l'application dans le conteneur
+COPY . /var/www/html
+
+# Définissez les paramètres PHP
+RUN echo "memory_limit=-1" >> /usr/local/etc/php/php.ini
+
+# Exposez le port Apache
+EXPOSE 80
