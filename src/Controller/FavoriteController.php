@@ -23,20 +23,11 @@ class FavoriteController extends AbstractController
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
-        $user = $this->getUser();
-
-
-        if ($user) {
-            $userFavorites = $user->getFavorites();
-        } else {
-            $userFavorites = null;
-        }
-
 
         $userFavorites = $user->getFavorites();
 
         $userFavorites = $paginator->paginate(
-            $recipeRepository->paginationQuery(),
+            $userFavorites,
             $request->query->get('page', 1),
             12
         );
@@ -52,48 +43,37 @@ class FavoriteController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function like(Recipe $recipe, EntityManagerInterface $manager): Response
     {
-
-        // recuperer le user connecté
         $user = $this->getUser();
-        $userFavorites = $user->getFavorites();
-
-
 
         if (!$user) {
-
             return $this->json([
                 'code' => 403,
                 'message' => "Unauthorized"
             ], 403);
         } else {
-
-            if ($userFavorites->contains($recipe)) {
+            if ($recipe->getUserFavorites()->contains($user)) {
                 $recipe->removeUserFavorite($user);
-                $likes = count($recipe->getUserFavorites());
-                $recipe->setLikes2(($likes));
-                $manager->persist($recipe);
-                $manager->flush();
-
-
-                return $this->json([
-                    'code' => 200,
-                    'message' => 'like bien supprimé',
-                    'likes' => $likes
-                ], 200);
-            } else {
-                $recipe->addUserFavorite($user);
-                $likes = count($recipe->getUserFavorites());
+                $likes = $recipe->getUserFavorites()->count();
                 $recipe->setLikes2($likes);
                 $manager->persist($recipe);
                 $manager->flush();
 
+                return $this->json([
+                    'code' => 200,
+                    'message' => 'Like supprimé avec succès',
+                    'likes' => $likes
+                ], 200);
+            } else {
+                $recipe->addUserFavorite($user);
+                $likes = $recipe->getUserFavorites()->count();
+                $recipe->setLikes2($likes);
+                $manager->persist($recipe);
+                $manager->flush();
 
                 return $this->json([
                     'code' => 200,
-                    'message' => 'like bien ajouté',
-                    // 'likes' => $countFavByRecipe
+                    'message' => 'Like ajouté avec succès',
                     'likes' => $likes
-
                 ], 200);
             }
         }
