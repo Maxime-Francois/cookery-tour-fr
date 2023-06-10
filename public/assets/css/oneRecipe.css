@@ -2,14 +2,19 @@
     display: flex;
     width: 80%;
     margin: auto;
+        gap: 30px;
 
 }
 
 .part-info {
     width: 50%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
 }
 
@@ -153,8 +158,12 @@
 
 .recipe-content p {
     font-size: 25px;
-    width: 80%;
-    margin: auto;
+        width: 80%;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .like-container {
