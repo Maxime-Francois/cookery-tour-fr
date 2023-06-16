@@ -43,64 +43,6 @@ if (searchToggle && searchCancel) {
 }
 
 
-//tooltip for the map
-
-   "use strict";
-   function SVGToolTip() {
-      
-      const oSVG = document.querySelector("svg");
-      // création et ajout élément
-      const oInfo = document.createElement("DIV");
-      oInfo.id = "info-SVG";
-      oSVG.parentNode.append(oInfo);
-
-      function _toggleInfo(e) {
-         oInfo.innerHTML = "mouseenter" === e.type ? "<span>" + e.target.dataset.name + "</span>" : "";
-      }
-
-      function _moveInfo(e) {
-         oInfo.style.transform = "translate3d(" + e.layerX + "px," + e.layerY + "px, 0)";
-      }
-
-      // mouse move sur SVG
-      oSVG.addEventListener("mousemove", _moveInfo, true);
-      // mouse enter/leave sur PATH
-      const oElems = document.querySelectorAll("path");
-      oElems.forEach(function (elem) {
-         elem.addEventListener("mouseenter", _toggleInfo);
-         elem.addEventListener("mouseleave", _toggleInfo);
-      });
-     
-   }
-   SVGToolTip()
-
-
-//toggle menu dropdown
-
-const dropdownBtn = document.getElementById("btn");
-const dropdownMenu = document.getElementById("dropdown");
-// const toggleArrow = document.getElementById("arrow");
-
-// Toggle dropdown function
-const toggleDropdown = function () {
-   dropdownMenu.classList.toggle("show");
-   // toggleArrow.classList.toggle("arrow");
-};
-
-
-// Toggle dropdown open/close when dropdown button is clicked
-dropdownBtn.addEventListener("click", function (e) {
-   e.stopPropagation();
-   toggleDropdown();
-});
-
-
-// Close dropdown when dom element is clicked
-document.documentElement.addEventListener("click", function () {
-   if (dropdownMenu.classList.contains("show")) {
-      toggleDropdown();
-   }
-});
 
 
 
