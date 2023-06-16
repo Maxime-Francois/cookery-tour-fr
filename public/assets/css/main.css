@@ -434,6 +434,7 @@ img {
   max-width: 1500px;
   width: 80%;
   margin: auto;
+      padding-bottom: 100px;
 }
 
 .container-mentions article {
