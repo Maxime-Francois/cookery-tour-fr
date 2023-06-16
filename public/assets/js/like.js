@@ -4,7 +4,7 @@ function onClickBtnLike(event) {
     const url = this.href;
     const spanCount = this.querySelector('.js-likes');
     const icone = this.querySelector('i');
-    const favoriteUrl = "http://0.0.0.0:8080/favorite";
+    const favoriteUrl = "http://www.cookery-tour.fr/favorite";
 
     function loggedIn() {
         // Check if the PHPSESSID cookie is present
