@@ -8,52 +8,7 @@
 	<link rel="stylesheet" href="{{ asset('assets/css/home.css')}}">
 {% endblock %}
 
-{% block javascripts %}
-<script>
-//tooltip for the map
 
-  "use strict";
-
-function SVGToolTip() {
-  const oSVG = document.querySelector("svg");
-
-  if (!oSVG) {
-    console.error("SVG element not found");
-    return;
-  }
-
-  // création et ajout élément
-  const oInfo = document.createElement("DIV");
-  oInfo.id = "info-SVG";
-  if (oSVG.parentNode) {
-    oSVG.parentNode.append(oInfo);
-  } else {
-    console.error("SVG parent node not found");
-    return;
-  }
-
-  function _toggleInfo(e) {
-    oInfo.innerHTML = e.type === "mouseenter" ? "<span>" + e.target.dataset.name + "</span>" : "";
-  }
-
-  function _moveInfo(e) {
-    oInfo.style.transform = "translate3d(" + e.layerX + "px," + e.layerY + "px, 0)";
-  }
-
-  // mouse move sur SVG
-  oSVG.addEventListener("mousemove", _moveInfo, true);
-
-  // mouse enter/leave sur PATH
-  const oElems = document.querySelectorAll("path");
-  oElems.forEach(function (elem) {
-    elem.addEventListener("mouseenter", _toggleInfo);
-    elem.addEventListener("mouseleave", _toggleInfo);
-  });
-}
-
-SVGToolTip();
-</script>
-{% endblock %}
 
 {% block body %}
 
@@ -95,3 +50,49 @@ SVGToolTip();
 
 
 {% endblock %}
+
+{% block javascripts %}
+	<script>
+"use strict";
+
+function SVGToolTip() {
+  const oSVG = document.querySelector("svg");
+
+  if (!oSVG) {
+    console.error("SVG element not found");
+    return;
+  }
+
+  // création et ajout élément
+  const oInfo = document.createElement("DIV");
+  oInfo.id = "info-SVG";
+  if (oSVG.parentNode) {
+    oSVG.parentNode.insertBefore(oInfo, oSVG.nextSibling);
+  } else {
+    console.error("SVG parent node not found");
+    return;
+  }
+
+  function _toggleInfo(e) {
+    oInfo.innerHTML = e.type === "mouseenter" ? "<span>" + e.target.getAttribute("data-name") + "</span>" : "";
+  }
+
+  function _moveInfo(e) {
+    oInfo.style.transform = "translate3d(" + e.layerX + "px," + e.layerY + "px, 0)";
+  }
+
+  // mouse move sur SVG
+  oSVG.addEventListener("mousemove", _moveInfo, true);
+
+  // mouse enter/leave sur PATH
+  const oElems = document.querySelectorAll("path");
+  oElems.forEach(function (elem) {
+    elem.addEventListener("mouseenter", _toggleInfo);
+    elem.addEventListener("mouseleave", _toggleInfo);
+  });
+}
+
+SVGToolTip();
+	</script>
+{% endblock %}
+
