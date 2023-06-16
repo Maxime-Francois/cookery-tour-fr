@@ -12,34 +12,46 @@
 <script>
 //tooltip for the map
 
-   "use strict";
-   function SVGToolTip() {
-      
-      const oSVG = document.querySelector("svg");
-      // création et ajout élément
-      const oInfo = document.createElement("DIV");
-      oInfo.id = "info-SVG";
-      oSVG.parentNode.append(oInfo);
+  "use strict";
 
-      function _toggleInfo(e) {
-         oInfo.innerHTML = "mouseenter" === e.type ? "<span>" + e.target.dataset.name + "</span>" : "";
-      }
+function SVGToolTip() {
+  const oSVG = document.querySelector("svg");
 
-      function _moveInfo(e) {
-         oInfo.style.transform = "translate3d(" + e.layerX + "px," + e.layerY + "px, 0)";
-      }
+  if (!oSVG) {
+    console.error("SVG element not found");
+    return;
+  }
 
-      // mouse move sur SVG
-      oSVG.addEventListener("mousemove", _moveInfo, true);
-      // mouse enter/leave sur PATH
-      const oElems = document.querySelectorAll("path");
-      oElems.forEach(function (elem) {
-         elem.addEventListener("mouseenter", _toggleInfo);
-         elem.addEventListener("mouseleave", _toggleInfo);
-      });
-     
-   }
-   SVGToolTip()
+  // création et ajout élément
+  const oInfo = document.createElement("DIV");
+  oInfo.id = "info-SVG";
+  if (oSVG.parentNode) {
+    oSVG.parentNode.append(oInfo);
+  } else {
+    console.error("SVG parent node not found");
+    return;
+  }
+
+  function _toggleInfo(e) {
+    oInfo.innerHTML = e.type === "mouseenter" ? "<span>" + e.target.dataset.name + "</span>" : "";
+  }
+
+  function _moveInfo(e) {
+    oInfo.style.transform = "translate3d(" + e.layerX + "px," + e.layerY + "px, 0)";
+  }
+
+  // mouse move sur SVG
+  oSVG.addEventListener("mousemove", _moveInfo, true);
+
+  // mouse enter/leave sur PATH
+  const oElems = document.querySelectorAll("path");
+  oElems.forEach(function (elem) {
+    elem.addEventListener("mouseenter", _toggleInfo);
+    elem.addEventListener("mouseleave", _toggleInfo);
+  });
+}
+
+SVGToolTip();
 </script>
 {% endblock %}
 
