@@ -22,6 +22,6 @@ Nous sommes convaincus que la cuisine française est l'une des plus délicieuses
 
 Mysql
 
-## commandes démarer le serveur 
+## adresse du site 
 
-php -S 0.0.0.0:8080 -t public/
+https://www.cookery-tour.fr/
