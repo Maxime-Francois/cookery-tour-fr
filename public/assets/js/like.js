@@ -27,7 +27,7 @@ function onClickBtnLike(event) {
 
             // Suppression de la recette dans les favoris
             if (favoriteUrl === window.location.href) {
-                const clickedCard = this.closest('.recipe-card');
+                const clickedCard = findParentCard(this);
                 if (clickedCard) {
                     clickedCard.remove();
                 }
@@ -40,6 +40,17 @@ function onClickBtnLike(event) {
         });
 }
 
+function findParentCard(element) {
+    let currentElement = element.parentNode;
+    while (currentElement) {
+        if (currentElement.classList.contains('recipe-card')) {
+            return currentElement;
+        }
+        currentElement = currentElement.parentNode;
+    }
+    return null;
+}
+
 document.querySelectorAll('a.like-button').forEach(function (link) {
-    link.addEventListener('click', onClickBtnLike.bind(link));
+    link.addEventListener('click', onClickBtnLike);
 });
