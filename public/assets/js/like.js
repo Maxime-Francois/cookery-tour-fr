@@ -13,37 +13,33 @@ function onClickBtnLike(event) {
         });
     }
 
-    axios.get(url).then(function (response) {
+    axios.get(url)
+        .then(function (response) {
+            // Comptage de like
+            spanCount.textContent = response.data.likes;
 
-        // comptage de like
-        spanCount.textContent = response.data.likes;
-        // bouton like dynamique
-        if (icone.classList.contains('fa-solid')) {
-            icone.classList.replace('fa-solid', 'fa-regular');
-        } else {
-            icone.classList.replace('fa-regular', 'fa-solid');
-        }
-    }).catch(function (error) {
+            // Bouton like dynamique
+            if (icone.classList.contains('fa-solid')) {
+                icone.classList.replace('fa-solid', 'fa-regular');
+            } else {
+                icone.classList.replace('fa-regular', 'fa-solid');
+            }
 
-        if (error.response.status === 500) {
-
-            window.location.href = 'https://www.cookery-tour.fr/login'
-        }
-
-    });
-
-    // supression de la recette dans les favoris
-    if (favoriteUrl === window.location.href) {
-        let clickedCard = this.closest('.recipe-card');
-        if (clickedCard) {
-            clickedCard.remove();
-        }
-    }
+            // Suppression de la recette dans les favoris
+            if (favoriteUrl === window.location.href) {
+                const clickedCard = this.closest('.recipe-card');
+                if (clickedCard) {
+                    clickedCard.remove();
+                }
+            }
+        })
+        .catch(function (error) {
+            if (error.response && error.response.status === 500) {
+                window.location.href = 'https://www.cookery-tour.fr/login';
+            }
+        });
 }
 
 document.querySelectorAll('a.like-button').forEach(function (link) {
-    link.addEventListener('click', onClickBtnLike);
-})
-
-
-
+    link.addEventListener('click', onClickBtnLike.bind(link));
+});
