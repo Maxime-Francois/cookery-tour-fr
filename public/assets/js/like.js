@@ -33,10 +33,11 @@ function onClickBtnLike(event) {
     });
 
     // supression de la recette dans les favoris
-    if (favoriteUrl == window.location.href) {
-
-        let clickedCard = this.parentNode.parentNode.parentNode
-        clickedCard.remove();
+    if (favoriteUrl === window.location.href) {
+        let clickedCard = this.closest('.recipe-card');
+        if (clickedCard) {
+            clickedCard.remove();
+        }
     }
 }
 
