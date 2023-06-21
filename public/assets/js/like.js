@@ -4,7 +4,7 @@ function onClickBtnLike(event) {
     const url = this.href;
     const spanCount = this.querySelector('.js-likes');
     const icone = this.querySelector('i');
-    const favoriteUrl = "http://www.cookery-tour.fr/favorite";
+    const favoriteUrl = "https://www.cookery-tour.fr/favorite";
 
     function loggedIn() {
         // Check if the PHPSESSID cookie is present
@@ -27,7 +27,7 @@ function onClickBtnLike(event) {
 
         if (error.response.status === 500) {
 
-            window.location.href = 'http://0.0.0.0:8080/login'
+            window.location.href = 'https://www.cookery-tour.fr/login'
         }
 
     });
