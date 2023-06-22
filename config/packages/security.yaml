@@ -21,6 +21,9 @@ security:
             custom_authenticator: App\Security\UserAuthenticator
             logout:
                 path: app_logout
+                invalidate_session: true
+                delete_cookies:
+                    secure: true
                 # where to redirect after logout
                 
 
