@@ -51,7 +51,7 @@ function onClickBtnLike(event) {
    const favoriteUrl = "https://www.cookery-tour.fr/favorite";
 
    function loggedIn() {
-      // Check if the PHPSESSID cookie is present
+      // Vérifier si le cookie PHPSESSID est présent
       return document.cookie.split(';').some((cookie) => {
          return cookie.trim().startsWith('PHPSESSID=');
       });
@@ -59,7 +59,7 @@ function onClickBtnLike(event) {
 
    axios.get(url)
       .then(function (response) {
-         // Comptage de like
+         // Comptage des likes
          spanCount.textContent = response.data.likes;
 
          // Bouton like dynamique
@@ -69,9 +69,9 @@ function onClickBtnLike(event) {
             icone.classList.replace('fa-regular', 'fa-solid');
          }
 
-         // Suppression de la recette dans les favoris
+         // Suppression de la recette des favoris
          if (favoriteUrl === window.location.href) {
-            const clickedCard = findParentCard(this);
+            const clickedCard = findParentCard(event.target);
             if (clickedCard) {
                clickedCard.remove();
             }
@@ -102,36 +102,36 @@ document.querySelectorAll('a.like-button').forEach(function (link) {
 
 //tooltip
 
-// "use strict";
-// function SVGToolTip() {
-//    const oSVG = document.querySelector("svg");
-//    // création et ajout élément
-//    const oInfo = document.createElement("DIV");
-//    oInfo.id = "info-SVG";
+"use strict";
+function SVGToolTip() {
+   const oSVG = document.querySelector("svg");
+   // création et ajout élément
+   const oInfo = document.createElement("DIV");
+   oInfo.id = "info-SVG";
 
-//    if (oSVG.parentNode) {
-//       oSVG.parentNode.append(oInfo);
-//    }
+   if (oSVG.parentNode) {
+      oSVG.parentNode.append(oInfo);
+   }
 
-//    function _toggleInfo(e) {
-//       oInfo.innerHTML = "mouseenter" === e.type ? "<span>" + e.target.dataset.name + "</span>" : "";
-//    }
+   function _toggleInfo(e) {
+      oInfo.innerHTML = "mouseenter" === e.type ? "<span>" + e.target.dataset.name + "</span>" : "";
+   }
 
-//    function _moveInfo(e) {
-//       oInfo.style.transform = "translate3d(" + e.layerX + "px," + e.layerY + "px, 0)";
-//    }
+   function _moveInfo(e) {
+      oInfo.style.transform = "translate3d(" + e.layerX + "px," + e.layerY + "px, 0)";
+   }
 
-//    // mouse move sur SVG
-//    oSVG.addEventListener("mousemove", _moveInfo, true);
-//    // mouse enter/leave sur PATH
-//    const oElems = document.querySelectorAll("path");
-//    oElems.forEach(function (elem) {
-//       elem.addEventListener("mouseenter", _toggleInfo);
-//       elem.addEventListener("mouseleave", _toggleInfo);
-//    });
-// }
+   // mouse move sur SVG
+   oSVG.addEventListener("mousemove", _moveInfo, true);
+   // mouse enter/leave sur PATH
+   const oElems = document.querySelectorAll("path");
+   oElems.forEach(function (elem) {
+      elem.addEventListener("mouseenter", _toggleInfo);
+      elem.addEventListener("mouseleave", _toggleInfo);
+   });
+}
 
-// SVGToolTip();
+SVGToolTip();
 
 
 
