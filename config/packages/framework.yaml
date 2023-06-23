@@ -17,6 +17,13 @@ framework:
     php_errors:
         log: true
 
+    # the IP address (or range) of your proxy
+    trusted_proxies: 'www.cookery-tour.fr,REMOTE_ADDR'
+    # trust *all* "X-Forwarded-*" headers
+    trusted_headers: ['x-forwarded-for', 'x-forwarded-host', 'x-forwarded-proto', 'x-forwarded-port', 'x-forwarded-prefix']
+    # or, if your proxy instead uses the "Forwarded" header
+    # trusted_headers: ['forwarded']
+
 when@test:
     framework:
         test: true
